@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const db = require("./database/index")
-
-
+const employeeRouter = require("./routers/employee")
+const goalRouter= require("./routers/goal")
+const reviewRouter= require("./routers/review")
+const AppraisalDecisionRouter= require("./routers/appraisal")
 
 var app = express();
 
@@ -30,7 +32,10 @@ app.use(cookieParser());
 
 db.init();
 
-
+app.use("/employee", employeeRouter)
+app.use("/goal",goalRouter)
+app.use("/review",reviewRouter)
+app.use("/",AppraisalDecisionRouter)
 
 app.listen(process.env.PORT, function () {
     console.log(`server is runing on port ${process.env.PORT}`);

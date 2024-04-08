@@ -129,7 +129,7 @@ employeeRouter.post("/register", async function (req, res) {
 
   const employee = await employeeModel.findOne({ email: email });
 
-  if (employee) {
+  if (employee?._id) {
     return res
       .status(400)
       .json({ message: "Employee already registered with this email." });
@@ -172,7 +172,7 @@ employeeRouter.post("/register", async function (req, res) {
         })
         .catch((err) => {
           console.log(err);
-          res.status(500).end();
+          res.status(500).end(err);
         });
     });
   }
@@ -244,7 +244,7 @@ employeeRouter.post("/register", async function (req, res) {
   });
 
 
-  employeeRouter.post("/login", function (req, res) {
+  employeeRouter.post("/login", async function (req, res) {
     let email = req.body.email;
     let password = req.body.password;
   
@@ -265,11 +265,13 @@ employeeRouter.post("/register", async function (req, res) {
           "Password must contain at least one special character, one number, and be 8 characters or greater.",
       });
     }
-  
-    employeeModel
-      .findOne({ email: email })
-      .then((employee) => {
-        if (employee.isVerified) {
+    const employee = await employeeModel.findOne({ email: email })
+
+    if(!employee || !employee?._id) {
+      return res.status(404).send("Employee not found")
+    }
+
+    if (employee?.isVerified) {
           bcrypt
             .compare(password, employee.password)
             .then((flag) => {
@@ -315,11 +317,6 @@ employeeRouter.post("/register", async function (req, res) {
           );
         }
       })
-      .catch((err) => {
-        console.log(err);
-        res.status(401).json({ message: "Employee not Registered." });
-      });
-  });
 
   employeeRouter.get("/logout", function (req, res) {
     res.clearCookie("token");
@@ -334,11 +331,12 @@ employeeRouter.post("/register", async function (req, res) {
   });
 
 
-  employeeRouter.post("/forgotPassword", function (req, res) {
+  employeeRouter.post("/forgotPassword", async function (req, res) {
     let email = req.body.email;
   
-    employeeModel.findOne({ email: email }, function (err, employee) {
-      if (err || !employee) {
+    const employee = await employeeModel.findOne({ email: email }) 
+    
+      if (!employee || !employee?._id) {
         return res.status(404).json({ message: "Employee not found" });
       }
   
@@ -360,7 +358,6 @@ employeeRouter.post("/register", async function (req, res) {
         }
       );
     });
-  });
   
 
   employeeRouter.post("/resetPassword", async (req, res) => {
@@ -380,7 +377,7 @@ employeeRouter.post("/register", async function (req, res) {
       const hashedPassword = await bcrypt.hash(password, 10);
   
       const employee = await employeeModel.findByIdAndUpdate(
-        decoded.id,
+        decoded.employeeId,
         { password: hashedPassword },
         { new: true }
       );

@@ -89,7 +89,7 @@ employeeRouter.post("/register", async function (req, res) {
     role,
     employeeType,
   } = req.body;
-
+  console.log(req.body)
   // Validate full_name (no numbers)
   const fullNameRegex = /^[A-Za-z]+(?: [A-Za-z]+)?$/;
   if (!fullNameRegex.test(full_name)) {
@@ -116,7 +116,7 @@ employeeRouter.post("/register", async function (req, res) {
   const passwordRegex =
     /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
   if (!passwordRegex.test(password)) {
-    return res.status(400).json({
+    return res.status(401).json({
       message:
         "Password must contain at least one special character, one number, and be 8 characters or less.",
     });
@@ -131,7 +131,7 @@ employeeRouter.post("/register", async function (req, res) {
 
   if (employee?._id) {
     return res
-      .status(400)
+      .status(401)
       .json({ message: "Employee already registered with this email." });
   } else {
     bcrypt.hash(password, 10).then((hashedPassword) => {

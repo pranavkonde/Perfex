@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
 
   app.use(express.json());
 const corsOptions = {
-  origin: "http://localhost:1234",
+  origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

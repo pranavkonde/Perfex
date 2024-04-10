@@ -1,0 +1,56 @@
+/* General Footer Styles */
+.site-footer {
+    background-color: #F3F3F3; /* Dark background */
+    color: black; /* Light text color */
+    padding: 20px 0; /* Padding at the top and bottom */
+    font-family: 'Times New Roman', Times, serif; /* Example font */
+    font-size: 20px;
+   }
+   
+   .footer-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+   padding: 25px;
+    margin: 0 auto; /* Center the container */
+   }
+   
+   /* Navigation Links */
+   .footer-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    /* justify-content: center; */
+    text-align: center;
+
+   }
+   
+   .footer-nav ul li a {
+    text-decoration: none;
+    color: #25316D;
+    font-size: 0.8rem;
+    font-size: 20px;
+    padding: 15px;
+   }
+   
+   
+   /* Bottom Section */
+   .footer-bottom {
+    text-align: center;
+    padding-top: 10px;
+   }
+   
+   
+   /* Responsive Styles */
+   @media (max-width: 768px) {
+    .footer-container {
+       flex-direction: column;
+    }
+   
+    .footer-nav ul, .footer-social ul {
+       justify-content: center;
+    }
+   }
+   

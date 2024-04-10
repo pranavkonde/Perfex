@@ -1,0 +1,36 @@
+nav {
+    background-color:#25316D;
+    overflow: hidden;
+    padding: 10px;
+   }
+   
+   nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+   }
+   
+   nav li {
+    float: right;
+   }
+   
+   nav li a {
+    display: block;
+    color: white;
+    /* font-weight: bold; */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+   }
+   
+   
+   
+   .landing-page-header {
+    text-align: center;
+    padding: 20px;
+   }
+   
+   .landing-page-header h1 {
+    font-size: 2.5em;
+    color: #333;
+   }

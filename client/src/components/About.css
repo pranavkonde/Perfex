@@ -1,0 +1,36 @@
+/* AboutPage.css */
+.about-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 30px;
+    margin: auto;
+    width: 1000px;
+    line-height: 1.5;
+    
+
+
+}
+  .about-container p{
+    font-size: 20px;
+    margin: 30px;
+    
+  } 
+   
+.about-container h2,h1{
+    text-align: center;
+    color: #25316D;
+    font-size: 30px;
+}
+  
+.about-container ul li{
+    font-size: 20px;
+    margin: 30px;
+    list-style: none;
+    word-spacing: 6px;
+}

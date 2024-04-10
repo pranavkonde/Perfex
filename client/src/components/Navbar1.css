@@ -1,0 +1,92 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #25316D;
+    color: white;
+    padding: 5px;
+}
+
+.navbar-left h2 {
+    margin: 0;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.navbar-item:last-child {
+    margin-right: 0;
+}
+
+.profile {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Times New Roman, Times, serif';
+}
+
+.profile-link {
+    color: white; /* Sets the link color to white */
+    text-decoration: none; /* Removes the default underline from the link */
+}
+
+.Mpage-link {
+    color: white; /* Sets the link color to white */
+    text-decoration: none; /* Removes the default underline from the link */
+}
+
+.save-link {
+    color: white; /* Sets the link color to white */
+    text-decoration: none; /* Removes the default underline from the link */
+}
+
+.Company {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-family: 'Times New Roman, Times, serif';
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard-link {
+    text-decoration: none; /* Removes the default underline from the link */
+    display: inline-block; /* Allows you to set width and height */
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
+
+.dashboard-link img {
+    width: 80px; /* Makes the image fill the link */
+    height: 30px; /* Keeps the aspect ratio of the image */
+    margin-top: 10px;;
+    border-radius: 20px;
+
+}
+
+.save {
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: 1000px; /* Push the Save button to the right */
+    font-family: 'Times New Roman, Times, serif';
+    color: white;
+
+
+}
+
+.logout {
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: auto; /* Push the Save button to the right */
+    font-family: 'Times New Roman, Times, serif';
+    color: white;
+
+
+}
+
+

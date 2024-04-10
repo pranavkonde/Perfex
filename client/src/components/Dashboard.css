@@ -1,0 +1,99 @@
+
+/* Page background color */
+
+ 
+.row1 {
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Allows the columns to wrap onto the next line if there's not enough space */
+   }
+   
+/* Column color */
+.column1 {
+  float: left;
+  width: 350px;;
+  height: 350px;
+  margin: 20px;
+  border: #333;
+  background-color:grey; /* White background for columns */
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+  overflow: hidden; /* Hide overflowing content */
+  position: relative;
+  margin-top: 80px;
+}
+ 
+/* Gradient border */
+.column1:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  z-index: -1;
+  border-radius: 15px;
+  transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+ 
+/* Hover effect */
+.column1:hover {
+  background-color: #e8e8e8; /* Lighter background color on hover */
+  transform: translateY(-10px); /* Move the column up on hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 4); /* Increase box shadow on hover */
+}
+ 
+ 
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+ 
+/* Heading style */
+.column1 h1 {
+    margin-top: 0px;
+   text-align: center;
+   }
+ 
+/* Text style */
+.column1 p {
+    margin: 0 10px;
+   }
+
+.column1 button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #25316D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+
+   .create-goal-button:hover {
+    /* Hover effect */
+    box-shadow: 0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5);
+ }
+
+ .Track-goal-button:hover {
+    /* Hover effect */
+    box-shadow: 0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5);
+ }
+
+ .Review-goal-button:hover {
+    /* Hover effect */
+    box-shadow: 0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5);
+ }
+
+   .column1 img {
+    width: 70px;
+    height: auto;
+    margin: 50px;
+    margin-left: 140px;
+    margin-bottom: 0px;
+   }

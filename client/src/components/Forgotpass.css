@@ -1,0 +1,46 @@
+/* ForgotPassword.css */
+.forgot-password-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+   }
+   
+   .forgot-password-form {
+    width: 40%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+   
+   .forgot-password-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+   }
+   
+   .forgot-password-form input {
+    padding: 10px;
+    margin:20px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+   }
+   
+   .forgot-password-form button {
+    padding: 10px 20px;
+    background-color: #25316D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 50px;
+   }
+   .forgot-password-form label{
+    text-align: center;
+   }   

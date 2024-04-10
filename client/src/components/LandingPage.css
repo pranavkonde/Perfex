@@ -1,0 +1,60 @@
+/* src/LandingPage.css */
+/* LandingPage.css */
+
+.return{
+    font-family: 'Times New Roman', Times, serif;
+}
+.container {
+    display: flex;    
+   }
+   .landing-page p {
+    margin-bottom: 0px; /* Adjust the top and bottom margins as needed */
+    
+}   
+
+.landing-page h1 {
+    margin-bottom: 0px; /* Adjust the top and bottom margins as needed */
+}  
+   
+   .image-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .image-column img {
+    max-width: 100%;
+    height: auto;
+   }
+   
+.landing-page {
+    text-align: center;
+   }
+
+.image-client{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image-client img {
+    margin-top: 60px;
+    max-width: 100%;
+    height: auto;
+   }
+
+   .image-feedback{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.image-feedback img {
+    margin-top: 60px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom:100px;
+   }  
+   

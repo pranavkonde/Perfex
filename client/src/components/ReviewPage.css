@@ -1,0 +1,145 @@
+.goal-trackerr {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    padding: 20px;
+   }
+   
+  .tracker-titlee {
+    margin-bottom: 20px;
+  }
+   
+  .goal-listt {
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+   
+  .goal-listt h2 {
+    font-size: 1.2em;
+    gap: 10px;
+  
+  }
+   
+  .goal-listt ul {
+    list-style-type: none;
+    padding: 0;
+    gap: 10px;
+  
+  }
+   
+  .goal-listt li {
+    cursor: pointer;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+   
+  .goal-listt li:hover {
+    background-color: #e0e0e0;
+  }
+   
+  .goal-detailss {
+    border: 1px solid #ccc;
+    padding: 30px; /* Increase padding for more internal spacing */
+    border-radius: 5px;
+    width: 900px; /* Increase width */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 10px;
+  
+   }
+  
+   .dropdown-containerr label {
+    margin-bottom: 10px; /* Add margin between dropdowns */
+    margin-top: 5px;
+    gap: 10px;
+  }
+  
+   .dropdown-containerr {
+    display: flex;
+    flex-direction: column;
+  }
+   
+  .goal-detailss h2 {
+    margin-bottom: 10px;
+  }
+   
+  .goal-detailss p {
+    margin-bottom: 8px;
+    gap: 5px;
+  }
+   
+  .goal-detailss strong {
+    font-weight: bold;
+  }
+  
+  .goal-containerr {
+    display: flex;
+    justify-content: space-between;
+  }
+   
+   
+   .goal-listt {
+    width: 30%; /* Adjust width as needed */
+    margin-right: 20px; /* Adds space to the right of the goal list */
+   }
+   
+   .goal-detailss {
+    width: 50%; /* Adjust width as needed */
+    margin-left: 20px; /* Adds space to the left of the goal details */
+    height: 100%;
+    width: 900px;
+   }
+  
+   .goal-detailss button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+   }
+  
+   .overall-ratingg {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px; /* Padding around the content */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 5px; /* Space above the section */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+   }
+   
+   .overall-ratingg h2 {
+    margin-bottom: 10px; /* Space below the title */
+    font-size: 24px; /* Larger font size for the title */
+    color: #343a40; /* Darker text color for the title */
+   }
+   
+   .overall-ratingg p {
+    margin-bottom: 10px; /* Space below each paragraph */
+    font-size: 18px; /* Larger font size for readability */
+    color: #495057; /* Slightly darker text color for the rating and note */
+   }
+   
+   .overall-ratingg p:last-child {
+    margin-bottom: 0; /* No extra space below the last paragraph */
+   }
+  
+   .rating-valuee {
+    display: inline-block; /* Ensures the span is inline with the rest of the text */
+    margin-right: 5px; /* Adds a small space between the rating value and the colon */
+  }
+  
+  /* Styles for the manager comment textarea */
+ 
+   
+  
+   
+   
+   
+   

@@ -1,0 +1,114 @@
+.task-tracker {
+    display: flex;
+    justify-content: space-around;
+    /* margin-top: 20px;
+    margin-right: 30%; */
+    position: relative; /* Add relative positioning to the task tracker */
+    margin: 5%;
+    
+   }
+   
+   .mpageColumn {
+    flex: 1 1 auto; /* Adjusted to control the initial size */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30%;
+    background: white;
+    max-width: 300px; /* Set a maximum width to prevent columns from becoming too wide */
+    margin: 5px; /* Adjust this value to reduce the gap between columns */
+    
+   }
+   
+   
+   .mpageColumn-header {
+    width: 100%; /* Ensure the header takes up the full width */
+    text-align: center; /* Center the heading */
+    position: relative; /* Make the header sticky so it stays in place when scrolling */
+    top: 0; /* Position the header at the top of the column */
+    z-index: 1; /* Ensure the header is above the content */
+   }
+   
+   .mpageColumn-content {
+    width: 100%; /* Ensure the content takes up the full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Allow the content to grow and fill available space */
+   }
+   
+   .task {
+    background-color: #f9f9f9;
+    border: 1px solid #25316d;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+    text-align: center;
+   }
+   
+   .employee-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1000; /* Ensure it's above other content */
+   }
+   
+   
+   .employee-details-modal h3 {
+    margin-top: 0; /* Remove default margin */
+    color: #333; /* Dark text for the heading */
+   }
+   
+   .employee-details-modal p {
+    margin-bottom: 10px; /* Space between paragraphs */
+    color: #666; /* Light text for the details */
+   }
+   
+   .employee-details-modal button {
+    background-color: #007bff; /* Blue background */
+    color: #fff; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    margin-top: 20px; /* Space above the button */
+    
+   }
+   
+   .employee-details-modal button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+   }
+  
+   .button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+   }
+  
+   .comment-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+   }
+  
+   .employee-details-modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%; /* Adjust as needed */
+    max-width: 600px; /* Adjust as needed */
+   }
+   
+   
+  

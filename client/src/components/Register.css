@@ -1,0 +1,65 @@
+.retur{
+    font-family: 'Times New Roman', Times, serif;
+}
+.RegisterContainer{
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    text-align: center;
+    margin: 50px;
+    
+      
+}
+
+.form-sign1{
+    background-color: #25316D;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.welcome-message {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 200px;
+}
+  
+   .sign-in-button {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+   
+   .registration-form {
+    background-color: white;    
+    padding: 20px;
+    border-radius: 5px;
+    width: 500px;
+
+   }
+   .registration-form .form-group select{
+    margin-top: 10px;
+   }
+
+   
+   .registration-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+   }
+   
+   .registration-form button{
+    background-color: #25316D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+   }
+   

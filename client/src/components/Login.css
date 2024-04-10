@@ -1,0 +1,71 @@
+/* Login.css */
+
+/* Center the text within the form */
+
+.form-group, .btn {
+    text-align: center;
+   }
+   
+   /* Center the form within its container */
+   .custom-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust as needed */
+   }
+   
+   /* Align form elements */
+   .login-form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 100px !important;
+    
+   }
+   
+   /* Style the form elements */
+   .login-form .form-control {
+    margin-bottom: 10px; /* Add some space between form elements */
+    margin-top: 20px;
+    width: 250px;
+   }
+   .login-button{
+    background-color: #25316D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    margin-left: 60px;
+   }
+   
+   /* Style the sign-up button */
+   .form-sign1{
+    margin-top: 0%;
+    background-color: #25316D;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 500px;
+    
+   }
+   .form-sign1 h1{
+    color: white;
+    margin: 50px;
+    margin-top: 200px;
+    font-size: 24px;
+   }
+  
+   .sign-up-button{
+    margin-top: 0px;
+    margin-left: 100px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+   }
+  
+   

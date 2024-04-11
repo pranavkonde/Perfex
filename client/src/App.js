@@ -5,6 +5,7 @@ import ProfilePage from './components/ProfilePage';
 import TrackGoal from './components/Trackgoal';
 import Mpage from './components/Mpage'; 
 import Reviewpage from './components/Reviewpage';
+import GoalsTable from './components/Creategoals';
 
 import LandingPage from './components/LandingPage';
 import About from './components/About';
@@ -36,6 +37,7 @@ function App() {
          <Route path="/forgotpass" element={<ForgotPassword/>}/>
          <Route path="/resetPassword" element={<Resetpass/>}/>
 
+          <Route path='createGoal' element={<GoalsTable/>}/>
          <Route path="*" element={<InvalidPage />} />
 
       </Routes>

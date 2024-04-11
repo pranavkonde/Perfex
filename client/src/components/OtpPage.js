@@ -9,12 +9,10 @@ const OTPPage = () => {
 
  const handleChange = (e) => {
     const value = e.target.value;
-    // Check if the value consists only of digits
-    if (/^\d*$/.test(value) && value.length <= 4) {
-        setOtp(value);
+    if (value.length <= 4) {
+      setOtp(value);
     }
-};
-
+ };
 
  const verifyOTP = () => {
     navigate('/login');

@@ -27,14 +27,20 @@ const Navbar1 = ({ currentPage }) => {
           <>
             {currentPage === 'dashboard' ? (
               <div className="navbar-item profile">
+                <button>
                 <Link to="/profile">
                  <a href="/profile" className="profile-link">Profile</a>
                 </Link>
+                </button>
+                
 
                 <div className="navbar-item profile">
+                <button>
                 <Link to="/Mpage">
                  <a href="/Mpage" className="Mpage-link">Manager</a>
                 </Link>
+                </button>
+                
               </div>
               </div>
             ) : (

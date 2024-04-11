@@ -52,7 +52,7 @@ const Register = () => {
       <Navbar />
       <div className="RegisterContainer">
         <div className="row">
-          <div className="col-md-6 form-sign1">
+          <div className="col-md-6 form-sign1" style={{width:'35%'}}>
             <h1 className="welcome-message">Welcome Back</h1>
             <NavLink to='/login'><button className=" sign-in-button">Sign In</button></NavLink>
           </div>

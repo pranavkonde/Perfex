@@ -98,9 +98,15 @@ const Register = () => {
                     value={formData.department}
                     onChange={handleInputChange}
                  >
-                    <option>Select Department</option>
-                    <option>Department 1</option>
-                    <option>Department 2</option>
+                    <option value="" disabled selected hidden>Select Department</option>
+                    <option>CEO/Founder</option>
+                    <option>CTO</option>
+                    <option>Vice President</option>
+                    <option>IT/System Manager</option>
+                    <option>Manager(Sales/Marketing/Cutomer)</option>
+                    <option>Developer/Analyst</option>
+                    <option>Freelancer/Contractor</option>
+                    <option>Others</option>
                  </select>
                 </div>
                 <div className="form-group">
@@ -110,10 +116,17 @@ const Register = () => {
                     name="role"
                     value={formData.role}
                     onChange={handleInputChange}
-                 >
-                    <option>Select Role</option>
-                    <option>Role 1</option>
-                    <option>Role 2</option>
+                    placeholder='Select Role'
+                 >  
+                    {/* <option>Select Role</option> */}
+                    <option value="" disabled selected hidden>Select Role </option>
+                    <option>Intern</option>
+                    <option>FTE</option>
+                    <option>SE-1/SE-2/SE-3</option>
+                    <option>Team-Lead</option>
+                    <option>Graphic/UI UX Designer</option>
+                    <option>Customer/Sales/Marketing Manager</option>
+                    
                  </select>
                 </div>
                 <div className="form-group">
@@ -124,7 +137,7 @@ const Register = () => {
                     value={formData.employeeType}
                     onChange={handleInputChange}
                  >
-                    <option>Select Employee Type</option>
+                    <option value="" disabled selected hidden >Select Employee Type</option>
                     <option>Manager</option>
                     <option>Employee</option>
                     <option>HR</option>

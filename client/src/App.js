@@ -16,6 +16,7 @@ import Login from './components/Login';
 import ForgotPassword from './components/ForgotPass';
 import Resetpass from './components/ResetPass';
 import InvalidPage from './components/InvalidPage';
+import OTPPage from './components/OtpPage';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 
           <Route path='createGoal' element={<GoalsTable/>}/>
          <Route path="*" element={<InvalidPage />} />
+         <Route path='/otppage' element={<OTPPage/>} />
 
       </Routes>
  );

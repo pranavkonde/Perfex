@@ -1,0 +1,41 @@
+/* TrackGoal.css */
+.profile-section{
+   width: 100%;
+   margin-left: 1em;
+}
+/* Style for the profile image */
+.profile-section .profile-logo img {
+    width: 100px; /* Adjust the width of the image */
+    height: 100px; /* Adjust the height of the image */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: contain; /* Ensures the image covers the area without stretching */
+    /* margin-right: 10px; 
+    margin-left: 100px;
+    margin-top: 80px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .profile-logo{
+    display: flex;
+    justify-content: center !important;
+   }
+
+
+
+/* Style for the profile name */
+.profile-section h2 {
+    font-size: 24px; /* Adjust the font size */
+    color: #333; /* Adjust the text color */
+    margin-bottom: 10px; /* Add some space below the name */
+    font-weight: bold; /* Make the text bold */
+    text-align: center;
+   }
+
+   .profile-section p {
+    font-size: 14px; /* Adjust the font size */
+    color: #333; /* Adjust the text color */
+    margin-bottom: 10px; /* Add some space below the name */
+    text-align: center;
+}
+      

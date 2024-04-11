@@ -1,72 +1,121 @@
 import React, { useState, useEffect } from 'react';
 import Navbar1 from './Navbar1';
-import './ReviewPage.css';
+import './TrackGoal.css';
+import Profilesection from './Profilesection';;
  
-const ManagerFeedback = () => {
+const GoalTracker = () => {
   const initialGoals = [
     {
       id: 1,
       title: 'Team Work',
       description: '...........',
-      rating: 1,
-      status: 'To Do',
-      priority: 'Low',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
       dueDate: '',
-      weightage: 10,
-      managerRating: 0, // Add managerRating property
-      managerComment: '' // Add managerComment property
+      weightage: 10 // Weightage percentage for this goal
     },
     {
-        id: 2,
-        title: 'Leadership',
-        description: '...........',
-        rating: 1,
-        status: 'To Do',
-        priority: 'Low',
-        dueDate: '',
-        weightage: 10,
-        managerRating: 0, // Add managerRating property
-        managerComment: '' // Add managerComment property
-      },
-      {
-        id: 1,
-        title: 'communication',
-        description: '...........',
-        rating: 1,
-        status: 'To Do',
-        priority: 'Low',
-        dueDate: '',
-        weightage: 10,
-        managerRating: 0, // Add managerRating property
-        managerComment: '' // Add managerComment property
-      },
-    // Add more goals as needed...
+      id: 2,
+      title: 'Leadership',
+      description: '................',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 20 // Weightage percentage for this goal
+    },
+    {
+      id: 3,
+      title: 'Communication',
+      description: '..........',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 10 // Weightage percentage for this goal
+    },
+ 
+    {
+      id: 4,
+      title: 'Conceptual Thinking',
+      description: '..........',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 20 // Weightage percentage for this goal
+  },
+ 
+  {
+    id: 5,
+    title: 'Analytical Skills',
+    description: '..........',
+    rating: 1, // Default rating
+    status: 'To Do', // Default status
+    priority: 'Low', // Default priority
+    dueDate: '',
+    weightage: 40 // Weightage percentage for this goal
+}
   ];
  
-  const [goals, setGoals] = useState(initialGoals);
-  const [selectedGoal, setSelectedGoal] = useState(initialGoals[0]);
-  const [overallRating, setOverallRating] = useState(0);
-  const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
-  const [showOverallRating, setShowOverallRating] = useState(false);
  
-  function calculateWeightedAverage(goals) {
-    const completedGoals = goals.filter((goal) => goal.status === 'Completed');
-    const weightedSum = completedGoals.reduce((sum, goal) => sum + goal.rating * goal.weightage, 0);
-    const totalWeightage = completedGoals.reduce((total, goal) => total + goal.weightage, 0);
-    const weightedAverage = totalWeightage > 0 ? weightedSum / totalWeightage : 0;
-    return weightedAverage;
+ 
+const [goals, setGoals] = useState(initialGoals);
+const [selectedGoalIndex, setSelectedGoalIndex] = useState(0);
+const [selectedGoal, setSelectedGoal] = useState(initialGoals[0]);
+const [overallRating, setOverallRating] = useState(0);
+const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
+const [showOverallRating, setShowOverallRating] = useState(false);
+ 
+function calculateWeightedAverage(goals) {
+  // Initialize variables
+  let weightedSum = 0;
+  let totalWeightage = 0;
+ 
+  // Iterate over each goal
+  goals.forEach(goal => {
+      // Check if the goal is completed
+      if (goal.status === 'Completed') {
+          // Add the product of rating and weightage to the weighted sum
+          weightedSum += goal.rating * goal.weightage;
+          // Add the weightage to the total weightage
+          totalWeightage += goal.weightage;
+      }
+  });
+ 
+  // Calculate the weighted average
+  let weightedAverage = 0;
+  if (totalWeightage > 0) {
+      weightedAverage = weightedSum / totalWeightage;
   }
  
+  return weightedAverage;
+}
+ 
   useEffect(() => {
+    // Assuming `goals` is your state containing all goals
     const overallRating = calculateWeightedAverage(goals);
     setOverallRating(overallRating);
-  }, [goals]);
+  }, [goals]); // Re-calculate whenever `goals` changes
+     
  
+const handleManagerRatingChange = (event) => {
+   const newManagerRating = parseInt(event.target.value);
+   const updatedGoal = { ...selectedGoal, managerRating: newManagerRating };
+   updateGoal(updatedGoal);
+ };
+
+ const handleManagerCommentChange = (event) => {
+    const newManagerComment = event.target.value;
+    const updatedGoal = { ...selectedGoal, managerComment: newManagerComment };
+    updateGoal(updatedGoal);
+  };
   const handleSave = () => {
     console.log('Goals saved:', goals);
     console.log('Overall Rating:', overallRating.toFixed(2));
-    setShowOverallRating(true);
-    // Save goals to backend or perform other actions here
+    setShowOverallRating(true); // Show the overall rating message
+    // Add logic to save the goals to backend or perform other actions
   };
  
   const handleGoalSelect = (goalId) => {
@@ -98,42 +147,47 @@ const ManagerFeedback = () => {
     updateGoal(updatedGoal);
   };
  
-  const handleManagerRatingChange = (event) => {
-    const newManagerRating = parseInt(event.target.value);
-    const updatedGoal = { ...selectedGoal, managerRating: newManagerRating };
-    updateGoal(updatedGoal);
-  };
- 
   const updateGoal = (updatedGoal) => {
-    const updatedGoals = goals.map((goal) => (goal.id === updatedGoal.id ? updatedGoal : goal));
+    const updatedGoals = goals.map((goal) =>
+      goal.id === updatedGoal.id ? updatedGoal : goal
+    );
     setGoals(updatedGoals);
     setSelectedGoal(updatedGoal);
   };
-
-  const handleManagerCommentChange = (event) => {
-    const newManagerComment = event.target.value;
-    const updatedGoal = { ...selectedGoal, managerComment: newManagerComment };
-    updateGoal(updatedGoal);
-  };
+ 
+  const profile = {
+    name: 'John Doe',
+    managerName: 'Jane Smith',
+    role: 'Software Developer',
+ };
  
   return (
+   
     <div>
-      <Navbar1 currentPage="Reviewpage" />
+    <Navbar1 currentPage="Trackgoal" />
+      <div className='profile-goaldetails'>
+     <div style={{display:'flex', flexDirection:'column'}}>
+     <Profilesection profile={profile} />
       <div className="goal-tracker">
         <div className="goal-container">
+         
           <div className="goal-list">
             <h2>Goals:</h2>
             <ul>
               {goals.map((goal) => (
-                
-<li key = {goal.id} onClick={() => handleGoalSelect(goal.id)}>
-
+               
+<li key={goal.id} onClick={() => handleGoalSelect(goal.id)}>
+ 
                   {goal.title}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="goal-details">
+         
+          </div>
+        </div>
+     </div>
+      <div className="goal-details">
             {selectedGoal && (
               <>
                 <h2>{selectedGoal.title}</h2>
@@ -143,7 +197,7 @@ const ManagerFeedback = () => {
                 <div className="dropdown-container">
                   <label>
                     <strong>Rating:</strong>{' '}
-                    <select value={selectedGoal.rating} onChange={handleRatingChange} >
+                    <select value={selectedGoal.rating} onChange={handleRatingChange}>
                       {[1, 2, 3, 4, 5].map((rating) => (
                         <option key={rating} value={rating}>
                           {rating}
@@ -178,6 +232,9 @@ const ManagerFeedback = () => {
                   <p>
                     <strong>Weightage:</strong> {selectedGoal.weightage}%
                   </p>
+  <p>
+                    <strong>Weightage:</strong> {selectedGoal.weightage}%
+                  </p>
                   <div className="manager-feedback">
                     <label>
                       <strong>Manager Rating:</strong>{' '}
@@ -203,21 +260,25 @@ const ManagerFeedback = () => {
                 </div>
               </>
             )}
-          </div>
-        </div>
+            </div>
       </div>
+ 
+ 
+ 
+ 
+     {/* Use the ProfileSection component */}
+     
       <div className="overall-rating">
-        {showOverallRating && (
-          <>
-            <h2>
-              Overall Rating: <span className="rating-value">{overallRating.toFixed(2)}</span> / 5
-            </h2>
-            {hasIncompleteGoals && <p>Note: Some goals are not counted in the overall rating due to their status.</p>}
-          </>
-        )}
-      </div>
+{showOverallRating && (
+    <>
+      <h2>Overall Rating: <span className="rating-value">{overallRating.toFixed(2)}</span> / 5</h2>
+      {hasIncompleteGoals && <p>Note: Some goals are not counted in the overall rating due to their status.</p>}
+    </>
+)}
+</div>
+ 
     </div>
   );
 };
  
-export default ManagerFeedback;
+export default GoalTracker;

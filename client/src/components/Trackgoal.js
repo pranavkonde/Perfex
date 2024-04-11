@@ -1,38 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import Navbar1 from './Navbar1';
 import './TrackGoal.css';
- 
+import Profilesection from './Profilesection';
+;
+
 const GoalTracker = () => {
   const initialGoals = [
     {
-       id: 1,
-       title: 'Team Work',
-       description: '...........',
-       rating: 1, // Default rating
-       status: 'To Do', // Default status
-       priority: 'Low', // Default priority
-       dueDate: '',
-       weightage: 10 // Weightage percentage for this goal
+      id: 1,
+      title: 'Team Work',
+      description: '...........',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 10 // Weightage percentage for this goal
     },
     {
-       id: 2,
-       title: 'Leadership',
-       description: '................',
-       rating: 1, // Default rating
-       status: 'To Do', // Default status
-       priority: 'Low', // Default priority
-       dueDate: '',
-       weightage: 20 // Weightage percentage for this goal
+      id: 2,
+      title: 'Leadership',
+      description: '................',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 20 // Weightage percentage for this goal
     },
     {
-       id: 3,
-       title: 'Communication',
-       description: '..........',
-       rating: 1, // Default rating
-       status: 'To Do', // Default status
-       priority: 'Low', // Default priority
-       dueDate: '',
-       weightage: 10 // Weightage percentage for this goal
+      id: 3,
+      title: 'Communication',
+      description: '..........',
+      rating: 1, // Default rating
+      status: 'To Do', // Default status
+      priority: 'Low', // Default priority
+      dueDate: '',
+      weightage: 10 // Weightage percentage for this goal
     },
 
     {
@@ -44,9 +46,9 @@ const GoalTracker = () => {
       priority: 'Low', // Default priority
       dueDate: '',
       weightage: 20 // Weightage percentage for this goal
-   },
+  },
 
-   {
+  {
     id: 5,
     title: 'Analytical Skills',
     description: '..........',
@@ -55,67 +57,85 @@ const GoalTracker = () => {
     priority: 'Low', // Default priority
     dueDate: '',
     weightage: 40 // Weightage percentage for this goal
- }
-   ];
-   
- 
-  const [goals, setGoals] = useState(initialGoals);
-  const [selectedGoal, setSelectedGoal] = useState(initialGoals[0]);
-  const [overallRating, setOverallRating] = useState(0);
-  const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
-  const [showOverallRating, setShowOverallRating] = useState(false);
+}
+  ];
   
-  function calculateWeightedAverage(goals) {
-    const completedGoals = goals.filter(goal => goal.status === 'Completed');
-    const weightedSum = completedGoals.reduce((sum, goal) => sum + (goal.rating * goal.weightage), 0);
-    const totalWeightage = completedGoals.reduce((total, goal) => total + goal.weightage, 0);
-    const weightedAverage = totalWeightage > 0 ? (weightedSum / totalWeightage) : 0;
-    return weightedAverage;
- }
-   useEffect(() => {
+
+  
+const [goals, setGoals] = useState(initialGoals);
+const [selectedGoalIndex, setSelectedGoalIndex] = useState(0);
+const [selectedGoal, setSelectedGoal] = useState(initialGoals[0]);
+const [overallRating, setOverallRating] = useState(0);
+const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
+const [showOverallRating, setShowOverallRating] = useState(false);
+
+function calculateWeightedAverage(goals) {
+  // Initialize variables
+  let weightedSum = 0;
+  let totalWeightage = 0;
+
+  // Iterate over each goal
+  goals.forEach(goal => {
+      // Check if the goal is completed
+      if (goal.status === 'Completed') {
+          // Add the product of rating and weightage to the weighted sum
+          weightedSum += goal.rating * goal.weightage;
+          // Add the weightage to the total weightage
+          totalWeightage += goal.weightage;
+      }
+  });
+
+  // Calculate the weighted average
+  let weightedAverage = 0;
+  if (totalWeightage > 0) {
+      weightedAverage = weightedSum / totalWeightage;
+  }
+
+  return weightedAverage;
+}
+
+  useEffect(() => {
     // Assuming `goals` is your state containing all goals
     const overallRating = calculateWeightedAverage(goals);
     setOverallRating(overallRating);
-   }, [goals]); // Re-calculate whenever `goals` changes
-      
-   
+  }, [goals]); // Re-calculate whenever `goals` changes
 
-   const handleSave = () => {
+  const handleSave = () => {
     console.log('Goals saved:', goals);
     console.log('Overall Rating:', overallRating.toFixed(2));
     setShowOverallRating(true); // Show the overall rating message
     // Add logic to save the goals to backend or perform other actions
-   };
-   
+  };
+  
   const handleGoalSelect = (goalId) => {
     const goal = goals.find((goal) => goal.id === goalId);
     setSelectedGoal(goal);
   };
- 
+
   const handleRatingChange = (event) => {
     const newRating = parseInt(event.target.value);
     const updatedGoal = { ...selectedGoal, rating: newRating };
     updateGoal(updatedGoal);
   };
- 
+
   const handleStatusChange = (event) => {
     const newStatus = event.target.value;
     const updatedGoal = { ...selectedGoal, status: newStatus };
     updateGoal(updatedGoal);
   };
- 
+
   const handlePriorityChange = (event) => {
     const newPriority = event.target.value;
     const updatedGoal = { ...selectedGoal, priority: newPriority };
     updateGoal(updatedGoal);
   };
- 
+
   const handleDueDateChange = (event) => {
     const newDueDate = event.target.value;
     const updatedGoal = { ...selectedGoal, dueDate: newDueDate };
     updateGoal(updatedGoal);
   };
- 
+
   const updateGoal = (updatedGoal) => {
     const updatedGoals = goals.map((goal) =>
       goal.id === updatedGoal.id ? updatedGoal : goal
@@ -123,10 +143,20 @@ const GoalTracker = () => {
     setGoals(updatedGoals);
     setSelectedGoal(updatedGoal);
   };
- 
+
+  const profile = {
+    name: 'John Doe',
+    managerName: 'Jane Smith',
+    role: 'Software Developer',
+ };
+
   return (
+    
     <div>
-      <Navbar1 currentPage="Trackgoal" />
+    <Navbar1 currentPage="Trackgoal" />
+      <div className='profile-goaldetails'>
+     <div style={{display:'flex', flexDirection:'column'}}>
+     <Profilesection profile={profile} />
       <div className="goal-tracker">
         <div className="goal-container">
           <div className="goal-list">
@@ -140,8 +170,12 @@ const GoalTracker = () => {
                 </li>
               ))}
             </ul>
+          </div> 
+         
           </div>
-          <div className="goal-details">
+        </div>
+     </div>
+      <div className="goal-details">
             {selectedGoal && (
               <>
                 <h2>{selectedGoal.title}</h2>
@@ -190,20 +224,20 @@ const GoalTracker = () => {
                 </div>
               </>
             )}
-          </div>
-        </div>
+            </div>
       </div>
+
       <div className="overall-rating">
- {showOverallRating && (
+{showOverallRating && (
     <>
       <h2>Overall Rating: <span className="rating-value">{overallRating.toFixed(2)}</span> / 5</h2>
       {hasIncompleteGoals && <p>Note: Some goals are not counted in the overall rating due to their status.</p>}
     </>
- )}
+)}
 </div>
 
     </div>
   );
 };
- 
+
 export default GoalTracker;

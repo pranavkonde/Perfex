@@ -1,5 +1,5 @@
-import './profileStyle.css'; // Import CSS file
-import Navbar1 from './Navbar1'; // Import the Navbar component
+import './profileStyle.css'; 
+import Navbar1 from './Navbar1'; 
 
 const ProfilePage = () => {
  

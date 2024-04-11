@@ -1,25 +1,10 @@
-// import React from 'react';
-// import ProfilePage from './components/ProfilePage';
-// // import Dashboard from './components/Dashboard';
-
-// function App() {
-//  return (
-//     <div className="App">
-//       {/* <Dashboard /> */}
-//       <ProfilePage/>
-//     </div>
-//  );
-// }
-
-// export default App; 
-
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Dashboard from './components/Dashboard'; // Adjust the path as necessary
-import ProfilePage from './components/ProfilePage'; // Adjust the path as necessary
-import TrackGoal from './components/Trackgoal'; // Adjust the path as necessary
-import Mpage from './components/Mpage'; // Adjust the path as necessary
-import Reviewpage from './components/Reviewpage'; // Adjust the path as necessary
+import Dashboard from './components/Dashboard'; 
+import ProfilePage from './components/ProfilePage';
+import TrackGoal from './components/Trackgoal';
+import Mpage from './components/Mpage'; 
+import Reviewpage from './components/Reviewpage';
 
 import LandingPage from './components/LandingPage';
 import About from './components/About';
@@ -30,9 +15,6 @@ import Login from './components/Login';
 import ForgotPassword from './components/ForgotPass';
 import Resetpass from './components/ResetPass';
 import InvalidPage from './components/InvalidPage';
-
-
-
 
 
 function App() {

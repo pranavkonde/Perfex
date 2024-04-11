@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './MPage.css'; // Ensure this path is correct
+import './MPage.css'; 
 import Navbar1 from './Navbar1';
 
  
@@ -35,12 +35,12 @@ const Trackgoal = () => {
           {(task.status === 'Pending' || task.status === 'Rejected') && (
             <div className="button-container">
               <button onClick={(event) => {
-                event.stopPropagation(); // Stop event propagation for buttons
+                event.stopPropagation(); 
                 acceptTask(task.id, 'Accept');
               }}>Accept</button>
               {task.status === 'Pending' && (
                 <button onClick={(event) => {
-                  event.stopPropagation(); // Stop event propagation for buttons
+                  event.stopPropagation(); 
                   acceptTask(task.id, 'Reject');
                 }}>Reject</button>
               )}
@@ -53,7 +53,7 @@ const Trackgoal = () => {
                 placeholder="Add comment"
                 value={task.comment}
                 onChange={(event) => handleCommentChange(task.id, event)}
-                onClick={(event) => event.stopPropagation()} // Stop propagation on comment input click
+                onClick={(event) => event.stopPropagation()} 
               />
             </div>
           )}
@@ -107,7 +107,6 @@ const Trackgoal = () => {
           {renderTasksByStatus('Rejected')}
         </div>
       </div>
-      {/* Modal for displaying employee details */}
       {selectedEmployee && (
         <div className="employee-details-modal" onClick={closeModal}>
           <div className="employee-details-modal-content" onClick={(event) => event.stopPropagation()}>

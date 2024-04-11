@@ -3,15 +3,12 @@ import './Navbar1.css';
 import { Link } from 'react-router-dom';
 
 const Navbar1 = ({ currentPage }) => {
- // Function to handle the click event on the PERFEX link
  const handlePerfexClick = () => {
-    // Reload the page
  };
 
  return (
     <div>
       <div className="navbar">
-        {/* Always render the Perfex logo */}
         <div className="navbar-item Company" onClick={handlePerfexClick}>
           <Link to="/dashboard" className="dashboard-link">
             <img src="image.ico" alt="Perfex" />

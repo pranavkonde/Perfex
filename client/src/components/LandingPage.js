@@ -1,4 +1,3 @@
-// src/LandingPage.js
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FaGithub } from 'react-icons/fa';

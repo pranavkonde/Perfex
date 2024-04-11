@@ -1,4 +1,3 @@
-/* AboutPage.css */
 .about-container {
     display: flex;
     flex-direction: column;
@@ -12,14 +11,11 @@
     margin: auto;
     width: 1000px;
     line-height: 1.5;
-    
-
-
 }
+
   .about-container p{
     font-size: 20px;
     margin: 30px;
-    
   } 
    
 .about-container h2,h1{

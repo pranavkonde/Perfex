@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import './Register.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './Register.css';
+import { useNavigate } from 'react-router-dom'; 
 import { Link, NavLink } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
 
 const Register = () => {
  const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Register = () => {
     confirmPassword: '',
  });
 
- const navigate = useNavigate(); // Use useNavigate instead of useHistory
+ const navigate = useNavigate(); 
 
  const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -27,16 +27,13 @@ const Register = () => {
 
  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Replace the URL with your backend endpoint
     try {
         const { confirmPassword, ...fromData} = formData;
         console.log(fromData)
       const response = await axios.post('http://localhost:5500/employee/register', fromData, {withCredentials: true} );
       if (response.status === 200) {
-        // Redirect to login or show success message
-        navigate('/login'); // Use navigate instead of history.push
+        navigate('/login'); 
       } else {
-        // Handle error
         console.error('Registration failed');
       }
     } catch (error) {
@@ -44,7 +41,6 @@ const Register = () => {
     }
  };
 
- // The rest of your component remains the same
 
 
  return (

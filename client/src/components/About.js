@@ -1,6 +1,5 @@
-// src/AboutPage.js
 import React from 'react';
-import './About.css'; // Import the CSS file
+import './About.css';
 import Footer from './Footer';
 import Navbar from './Navbar';
 

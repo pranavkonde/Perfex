@@ -1,4 +1,3 @@
-/* Base styles */
 .goal-tracker {
   font-family: Arial, sans-serif;
   display: flex;
@@ -136,7 +135,6 @@
   margin-right: 5px;
  }
  
- /* Responsive styles */
  @media (max-width: 768px) {
   .goal-container {
      flex-direction: column;

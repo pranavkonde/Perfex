@@ -4,10 +4,9 @@
     justify-content: center;
     align-items: center;
     display: inline;
-    flex-wrap: wrap; /* Allows the columns to wrap onto the next line if there's not enough space */
+    flex-wrap: wrap; 
    }
    
-/* Column color */
 .column {
   display: flex;
   justify-content: center;
@@ -17,14 +16,13 @@
   height: auto;
   margin: 20px;
   border: #333;
-  background-color:grey; /* White background for columns */
+  background-color:grey; 
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
   position: relative;
   max-width: 100% !important;
 }
  
-/* Gradient border */
 .column:before {
   content: "";
   position: absolute;
@@ -34,16 +32,15 @@
   left: -10px;
   z-index: -1;
   border-radius: 15px;
-  transition: background-color 0.3s ease; /* Add transition for hover effect */
+  transition: background-color 0.3s ease;
 }
 
 .column:hover {
-    background-color: #e8e8e8; /* Lighter background color on hover */
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 4); /* Increase box shadow on hover */
+    background-color: #e8e8e8; 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 4);
   }
    
    
-  /* Clear floats after the columns */
   .row:after {
     content: "";
     display: table;
@@ -80,7 +77,6 @@
         display: flex;
         flex-direction: column;
         width: 50%;
-        /* border: 1px solid black; */
        }
        .column label {
         font-weight: bold;
@@ -121,7 +117,6 @@
 
 .profileForm{
   display: flex;
-  /* flex-direction: column; */
 }
     
        

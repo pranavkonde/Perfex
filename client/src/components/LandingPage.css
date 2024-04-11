@@ -1,6 +1,3 @@
-/* src/LandingPage.css */
-/* LandingPage.css */
-
 .return{
     font-family: 'Times New Roman', Times, serif;
 }
@@ -8,12 +5,12 @@
     display: flex;    
    }
    .landing-page p {
-    margin-bottom: 0px; /* Adjust the top and bottom margins as needed */
+    margin-bottom: 0px;
     
 }   
 
 .landing-page h1 {
-    margin-bottom: 0px; /* Adjust the top and bottom margins as needed */
+    margin-bottom: 0px;
 }  
    
    .image-column {

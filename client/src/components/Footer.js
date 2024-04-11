@@ -1,9 +1,8 @@
 import React from 'react';
-import './Footer.css'; // Ensure you have the necessary CSS for styling
+import './Footer.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareInstagram, faSignInAlt, faQuestionCircle , faStar } from '@fortawesome/free-solid-svg-icons';
 import { Link,NavLink } from 'react-router-dom';
-// import { faGithub, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
  const scrollToTop = () => {

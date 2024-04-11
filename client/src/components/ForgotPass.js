@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Forgotpass.css'; // Import the CSS file
+import './Forgotpass.css'; 
 import { Link, NavLink } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
 
 const ForgotPassword = () => {
  const [email, setEmail] = useState('');
@@ -16,11 +16,8 @@ const ForgotPassword = () => {
       const response = await axios.post('http://localhost:5500/employee/forgotPassword', { email }, {withCredentials:true});
       console.log("asdfdsd",response.data)
       if (response.status === 200) {
-        // Assuming the backend sends a success message or status
-        // You can show a success message to the user
         alert('Reset link sent to your email.');
       } else {
-        // Handle error
         console.error('Failed to send reset link');
       }
     } catch (error) {

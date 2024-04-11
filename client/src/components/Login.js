@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
-import './Register.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './Register.css'; 
+import { useNavigate } from 'react-router-dom'; 
 import { Link, NavLink } from 'react-router-dom';
 import './Login.css';
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
 
 const Login = () => {
  const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const Login = () => {
     password: '',
  });
 
- const navigate = useNavigate(); // Use useNavigate instead of useHistory
+ const navigate = useNavigate(); 
 
  const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,9 +26,8 @@ const Login = () => {
       const response = await axios.post('http://localhost:5500/employee/login', formData,{withCredentials:true});
       console.log("jndhbfdjsa",response.data)
       if (response.status === 200) {
-        navigate('/dashboard'); // Use navigate instead of history.push
+        navigate('/dashboard'); 
       } else {
-        // Handle error
         console.error('Login failed');
       }
     } catch (error) {

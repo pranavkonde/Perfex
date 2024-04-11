@@ -2,7 +2,7 @@
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the left */
+  align-items: flex-start; 
   padding: 20px;
  }
  
@@ -42,16 +42,16 @@
  
 .goal-detailss {
   border: 1px solid #ccc;
-  padding: 30px; /* Increase padding for more internal spacing */
+  padding: 30px; 
   border-radius: 5px;
-  width: 900px; /* Increase width */
+  width: 900px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   gap: 10px;
 
  }
 
  .dropdown-containerr label {
-  margin-bottom: 10px; /* Add margin between dropdowns */
+  margin-bottom: 10px; 
   margin-top: 5px;
   gap: 10px;
 }
@@ -81,19 +81,19 @@
  
  
  .goal-listt {
-  width: 30%; /* Adjust width as needed */
-  margin-right: 20px; /* Adds space to the right of the goal list */
+  width: 30%;
+  margin-right: 20px; 
  }
  
  .goal-detailss {
-  width: 50%; /* Adjust width as needed */
-  margin-left: 20px; /* Adds space to the left of the goal details */
+  width: 50%; 
+  margin-left: 20px; 
   height: 100%;
   width: 900px;
  }
 
  .goal-detailss button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50; 
   border: none;
   color: white;
   padding: 10px 20px;
@@ -107,35 +107,33 @@
  }
 
  .overall-ratingg {
-  background-color: #f8f9fa; /* Light background color */
-  padding: 20px; /* Padding around the content */
-  border-radius: 10px; /* Rounded corners */
-  margin-top: 5px; /* Space above the section */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #f8f9fa; 
+  padding: 20px; 
+  border-radius: 10px; 
+  margin-top: 5px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
  
  .overall-ratingg h2 {
-  margin-bottom: 10px; /* Space below the title */
-  font-size: 24px; /* Larger font size for the title */
-  color: #343a40; /* Darker text color for the title */
+  margin-bottom: 10px; 
+  font-size: 24px; 
+  color: #343a40; 
  }
  
  .overall-ratingg p {
-  margin-bottom: 10px; /* Space below each paragraph */
-  font-size: 18px; /* Larger font size for readability */
-  color: #495057; /* Slightly darker text color for the rating and note */
+  margin-bottom: 10px; 
+  font-size: 18px; 
+  color: #495057; 
  }
  
  .overall-ratingg p:last-child {
-  margin-bottom: 0; /* No extra space below the last paragraph */
+  margin-bottom: 0; 
  }
 
  .rating-valuee {
-  display: inline-block; /* Ensures the span is inline with the rest of the text */
-  margin-right: 5px; /* Adds a small space between the rating value and the colon */
+  display: inline-block; 
+  margin-right: 5px; 
 }
-
-/* Styles for the manager comment textarea */
 
  
 

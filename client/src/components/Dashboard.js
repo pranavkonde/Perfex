@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar1 from './Navbar1'; // Import the Navbar component
-import './Dashboard.css'; // Ensure this CSS file contains the styles for the row and column classes
+import Navbar1 from './Navbar1'; 
+import './Dashboard.css';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {

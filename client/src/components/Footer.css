@@ -1,9 +1,8 @@
-/* General Footer Styles */
 .site-footer {
-    background-color: #F3F3F3; /* Dark background */
-    color: black; /* Light text color */
-    padding: 20px 0; /* Padding at the top and bottom */
-    font-family: 'Times New Roman', Times, serif; /* Example font */
+    background-color: #F3F3F3; 
+    color: black; 
+    padding: 20px 0; 
+    font-family: 'Times New Roman', Times, serif;
     font-size: 20px;
    }
    
@@ -13,16 +12,14 @@
     text-align: center;
     align-items: center;
    padding: 25px;
-    margin: 0 auto; /* Center the container */
+    margin: 0 auto; 
    }
    
-   /* Navigation Links */
    .footer-nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-    /* justify-content: center; */
     text-align: center;
 
    }
@@ -36,14 +33,12 @@
    }
    
    
-   /* Bottom Section */
    .footer-bottom {
     text-align: center;
     padding-top: 10px;
    }
    
    
-   /* Responsive Styles */
    @media (max-width: 768px) {
     .footer-container {
        flex-direction: column;

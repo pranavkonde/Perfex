@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// import './Forgotpass.css'; // Import the CSS file
 import { Link, NavLink } from 'react-router-dom';
-import axios from 'axios'; // Import axios
+import axios from 'axios'; 
 
 const Resetpass = () => {
  const [password, setPassword] = useState('');
@@ -25,12 +24,8 @@ const Resetpass = () => {
       const response = await axios.post('http://localhost:5500/employee/resetPassword', { password },{withCredentials:true});
       console.log("njsdchwjd",response.data)
       if (response.status === 200) {
-        // Assuming the backend sends a success message or status
-        // You can show a success message to the user
         alert('Password reset successful.');
-        // Optionally, redirect the user to the login page
       } else {
-        // Handle error
         console.error('Failed to reset password');
       }
     } catch (error) {

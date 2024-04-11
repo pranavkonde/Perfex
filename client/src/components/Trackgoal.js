@@ -10,53 +10,53 @@ const GoalTracker = () => {
       id: 1,
       title: 'Team Work',
       description: '...........',
-      rating: 1, // Default rating
-      status: 'To Do', // Default status
-      priority: 'Low', // Default priority
+      rating: 1, 
+      status: 'To Do', 
+      priority: 'Low', 
       dueDate: '',
-      weightage: 10 // Weightage percentage for this goal
+      weightage: 10 
     },
     {
       id: 2,
       title: 'Leadership',
       description: '................',
-      rating: 1, // Default rating
-      status: 'To Do', // Default status
-      priority: 'Low', // Default priority
+      rating: 1, 
+      status: 'To Do',
+      priority: 'Low', 
       dueDate: '',
-      weightage: 20 // Weightage percentage for this goal
+      weightage: 20 
     },
     {
       id: 3,
       title: 'Communication',
       description: '..........',
-      rating: 1, // Default rating
-      status: 'To Do', // Default status
-      priority: 'Low', // Default priority
+      rating: 1, 
+      status: 'To Do', 
+      priority: 'Low', 
       dueDate: '',
-      weightage: 10 // Weightage percentage for this goal
+      weightage: 10 
     },
 
     {
       id: 4,
       title: 'Conceptual Thinking',
       description: '..........',
-      rating: 1, // Default rating
-      status: 'To Do', // Default status
-      priority: 'Low', // Default priority
+      rating: 1, 
+      status: 'To Do', 
+      priority: 'Low', 
       dueDate: '',
-      weightage: 20 // Weightage percentage for this goal
+      weightage: 20 
   },
 
   {
     id: 5,
     title: 'Analytical Skills',
     description: '..........',
-    rating: 1, // Default rating
-    status: 'To Do', // Default status
-    priority: 'Low', // Default priority
+    rating: 1, 
+    status: 'To Do', 
+    priority: 'Low', 
     dueDate: '',
-    weightage: 40 // Weightage percentage for this goal
+    weightage: 40 
 }
   ];
   
@@ -70,22 +70,15 @@ const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
 const [showOverallRating, setShowOverallRating] = useState(false);
 
 function calculateWeightedAverage(goals) {
-  // Initialize variables
   let weightedSum = 0;
   let totalWeightage = 0;
-
-  // Iterate over each goal
   goals.forEach(goal => {
-      // Check if the goal is completed
       if (goal.status === 'Completed') {
-          // Add the product of rating and weightage to the weighted sum
           weightedSum += goal.rating * goal.weightage;
-          // Add the weightage to the total weightage
           totalWeightage += goal.weightage;
       }
   });
 
-  // Calculate the weighted average
   let weightedAverage = 0;
   if (totalWeightage > 0) {
       weightedAverage = weightedSum / totalWeightage;
@@ -95,16 +88,14 @@ function calculateWeightedAverage(goals) {
 }
 
   useEffect(() => {
-    // Assuming `goals` is your state containing all goals
     const overallRating = calculateWeightedAverage(goals);
     setOverallRating(overallRating);
-  }, [goals]); // Re-calculate whenever `goals` changes
+  }, [goals]); 
 
   const handleSave = () => {
     console.log('Goals saved:', goals);
     console.log('Overall Rating:', overallRating.toFixed(2));
-    setShowOverallRating(true); // Show the overall rating message
-    // Add logic to save the goals to backend or perform other actions
+    setShowOverallRating(true); 
   };
   
   const handleGoalSelect = (goalId) => {

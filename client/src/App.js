@@ -29,6 +29,7 @@ import Register  from './components/Register';
 import Login from './components/Login';
 import ForgotPassword from './components/ForgotPass';
 import Resetpass from './components/ResetPass';
+import InvalidPage from './components/InvalidPage';
 
 
 
@@ -52,6 +53,8 @@ function App() {
          <Route path='/login' element={<Login/>}></Route>
          <Route path="/forgotpass" element={<ForgotPassword/>}/>
          <Route path="/resetPassword" element={<Resetpass/>}/>
+
+         <Route path="*" element={<InvalidPage />} />
 
       </Routes>
  );

@@ -1,0 +1,33 @@
+.invalidPageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+    overflow: hidden; 
+   }
+   
+   .invalidPageImage {
+    margin-top: 20px !important;
+    height: 450px;
+    width: 650px;
+   }
+   
+   .invalidPage-image-container {
+    margin-bottom: 20px;
+   }
+   
+   .invalidPageButtonContainer button{
+    background-color:  #25316D;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 50px;
+    width: 200px;
+    font-size: large;
+   }
+   
+   

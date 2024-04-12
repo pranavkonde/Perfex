@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar1 from './Navbar1';
 import './TrackGoal.css';
 import Profilesection from './Profilesection';
-;
+import axios from 'axios';
 
 const GoalTracker = () => {
   const initialGoals = [
@@ -68,6 +68,10 @@ const [selectedGoal, setSelectedGoal] = useState(initialGoals[0]);
 const [overallRating, setOverallRating] = useState(0);
 const [hasIncompleteGoals, setHasIncompleteGoals] = useState(false);
 const [showOverallRating, setShowOverallRating] = useState(false);
+const [profile, setProfile] = useState({});
+const [employeeId, setEmployeeId] = useState('');
+
+
 
 function calculateWeightedAverage(goals) {
   let weightedSum = 0;
@@ -135,19 +139,38 @@ function calculateWeightedAverage(goals) {
     setSelectedGoal(updatedGoal);
   };
 
-  const profile = {
-    name: 'John Doe',
-    managerName: 'Jane Smith',
-    role: 'Software Developer',
- };
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = await axios.get('http://localhost:5500/employee/authenticate', {withCredentials: true});
+        if(!token?.data) throw new Error('Network response was not ok');
+        setEmployeeId(token?.data?.employeeId);
+
+      const response = await axios.get(`http://localhost:5500/employee/${token?.data?.employeeId}`)
+      if(!response?.data) throw new Error('Network response was not ok');
+
+      const data = response?.data;
+      console.log(data)
+
+        setProfile(response.data);
+
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    fetchProfile();
+ }, []);
+
+
 
   return (
     
     <div>
     <Navbar1 currentPage="Trackgoal" />
-      <div className='profile-goaldetails'>
-     <div style={{display:'flex', flexDirection:'column'}}>
-     <Profilesection profile={profile} />
+    <div className='profile-goaldetails'>
+      <div style={{display:'flex', flexDirection:'column'}}>
+        <Profilesection profile={profile} />
       <div className="goal-tracker">
         <div className="goal-container">
           <div className="goal-list">

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Creategoals.css';
+import { MdCancel } from "react-icons/md";
+import {Link} from 'react-router-dom';
 
 const GoalsTable = () => {
   const [goals, setGoals] = useState([]);
@@ -20,7 +22,7 @@ const GoalsTable = () => {
 
   const handleSelectGoal = (goal) => {
     setSelectedGoal(goal);
-    setShowDropdown(false);
+    setShowDropdown(true);
     addGoalToTable(goal);
   };
 
@@ -57,7 +59,9 @@ const GoalsTable = () => {
     <div className="goals-container">
       <header className="header">
         <div className="navbar">
-          <img src='image.ico' alt="Your Logo" className="logo" />
+          <Link to='/dashboard'>
+            <img src='image.ico' alt="Your Logo" className="logo" />
+          </Link>
           <button className="add-goal-btn" onClick={handleAddGoal}>Goal Bank</button>
         </div>
       </header>
@@ -65,16 +69,22 @@ const GoalsTable = () => {
       <h1 className="page-title">Create Your Goals</h1>
       <div>
         {showDropdown && (
-          <div className="dropdown">
-            <div className="dropdown-content">
-              <div className="goals-list">
-                <h2>Goals List</h2>
-                {goalsList.map((goal, index) => (
-                  <button key={index} onClick={() => handleSelectGoal(goal)}>{goal}</button>
-                ))}
+         <div className="dropdown">
+         <div className="dropdown-content">
+            <div className="goals-list">
+              <div style={{display:'flex'}}>
+                <h2 style={{margin:'20px'}}>Goals List</h2>
+                <Link style={{marginLeft:'650px',marginTop:'20px',color:'black',fontSize:'20px'}} onClick={handleAddGoal}><MdCancel /></Link>
               </div>
+              
+              {goalsList.map((goal, index) => (
+                <button key={index} onClick={() => handleSelectGoal(goal)}>{goal}</button>
+              ))}
             </div>
-          </div>
+           
+         </div>
+        </div>
+        
         )}
       </div>
       <table className="goals-table">

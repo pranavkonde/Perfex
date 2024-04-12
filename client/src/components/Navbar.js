@@ -10,7 +10,9 @@ const Navbar = () => {
 <nav style={{ fontFamily: 'Times New Roman, Times, serif' }}>
     
 <ul>
-    <img src='image.ico' alt='Perfex' className='navLogo'/>
+    <Link to="/">
+        <img src='image.ico' alt='Perfex' className='navLogo'/>
+    </Link>
     <li>
         <NavLink to="/login" activeClassName="active">
             <FontAwesomeIcon icon={faUser} /> Login

@@ -29,7 +29,7 @@
 .logo {
     width: 80px;
     height: 30px;
-    margin-top: 10px;;
+    margin-top: 8px;;
     border-radius: 20px;
 }
 
@@ -42,11 +42,14 @@
     transition: background-color 0.3s ease;
     position: relative;
     height: 20px; */
-    border-radius: 10px;
+    background-color: white;
+    color: black;
+    padding: 8px;
+    border-radius: 8px;
 }
 
-.add-goal-btn:hover {
-    background-color: #0056b3;
+.add-goal-btn:hover{
+    box-shadow: 0 0 4px 4px #6e779f;
 }
 
 /* .separator {
@@ -76,13 +79,15 @@
 .dropdown-content {
     display: block; 
     position: absolute;
-    background-color: #5a8dc7;
+    color: black;
+    background-color: #5F89AA;
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     left: 16%;
     text-align: center;
     justify-content: center;
+    
 }
 
 
@@ -100,7 +105,8 @@
 }
 
 .dropdown-content button:hover {
-    background-color: #4caf50;
+    background-color: #25316D;
+    color: white;
 }
 
 .submit-btn{
@@ -119,3 +125,19 @@
     color: white;
     padding: 5px;    
 }
+
+   
+   .close-icon {
+    position: absolute;
+    /* top: 10px; Adjust as needed */
+    /* left: 10px; Adjust as needed */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+   }
+   
+   .close-icon svg {
+    fill: #000; /* Adjust the color as needed */
+   }
+   

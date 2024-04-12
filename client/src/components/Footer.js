@@ -18,9 +18,8 @@ const Footer = () => {
         <div className='footer-container'>
           <div className='footer-nav'>
             <ul>
-              <li><a href='#home'>Home</a></li>
+              <li><a href='/'>Home</a></li>
               <li><a href='/about'>About</a></li>
-              <li><a href='#contact'>Contact</a></li>
               <li><a href='#privacy'>Privacy</a></li>
               <li><a href='#terms'>Terms</a></li>
             </ul>
@@ -29,7 +28,6 @@ const Footer = () => {
         <div className='footer-bottom' onClick={scrollToTop}>
         <p>&copy; 2024 Perfex. All rights reserved.</p>
         </div>
-       
       </footer>
     </div>
  );

@@ -8,7 +8,7 @@ const ProfileSection = ({ profile, goals }) => {
         <img src="profile.jpg" alt="Profile Logo" />
       </div>
       <div className="profile-info">
-        <h2>{profile.name}</h2>
+        <h2>{profile.full_name}</h2>
         <p>Manager: {profile.managerName}</p>
         <p>Role: {profile.role}</p>
       </div>

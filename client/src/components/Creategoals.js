@@ -59,9 +59,9 @@ const GoalsTable = () => {
     <div className="goals-container">
       <header className="header">
         <div className="navbar">
-          <Link to='/dashboard'>
-            <img src='image.ico' alt="Your Logo" className="logo" />
-          </Link>
+        <Link to="/dashboard" className="dashboard-link">
+            <img src="image.ico" alt="Perfex" />
+          </Link>          
           <button className="add-goal-btn" onClick={handleAddGoal}>Goal Bank</button>
         </div>
       </header>

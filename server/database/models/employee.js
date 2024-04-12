@@ -19,6 +19,10 @@ const EmployeeSchema = new Schema({
     type: String,
     required: true,
  },
+ gender:{
+   type: String,
+   required:false
+ },
  role: {
     type: String,
     required: true,

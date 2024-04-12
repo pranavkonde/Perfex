@@ -224,9 +224,6 @@ const handleManagerRatingChange = (event) => {
                   <p>
                     <strong>Weightage:</strong> {selectedGoal.weightage}%
                   </p>
-  <p>
-                    <strong>Weightage:</strong> {selectedGoal.weightage}%
-                  </p>
                   <div className="manager-feedback">
                     <label>
                       <strong>Manager Rating:</strong>{' '}

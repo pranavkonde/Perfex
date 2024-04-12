@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Creategoals.css';
+import { Link } from 'react-router-dom';
+
 
 const GoalsTable = () => {
   const [goals, setGoals] = useState([]);
@@ -57,7 +59,9 @@ const GoalsTable = () => {
     <div className="goals-container">
       <header className="header">
         <div className="navbar">
-          <img src='image.ico' alt="Your Logo" className="logo" />
+        <Link to="/dashboard" className="dashboard-link">
+            <img src="image.ico" alt="Perfex" />
+          </Link>          
           <button className="add-goal-btn" onClick={handleAddGoal}>Goal Bank</button>
         </div>
       </header>

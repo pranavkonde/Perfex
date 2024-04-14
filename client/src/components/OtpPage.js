@@ -41,12 +41,33 @@ const OTPPage = () => {
     }
   };
 
-  const handleResendClick = () => {
-    setShowSuccess(true);
-    setTimeout(() => {
-      setShowSuccess(false);
-    }, 5000);
-  };
+  const handleResendClick = async () => {
+    try {
+       const token = await axios.get(
+        "http://localhost:5500/employee/authenticate",
+        { withCredentials: true }
+      );
+       const employeeId = token.data.employeeId; 
+      
+       const response = await axios.post(
+         "http://localhost:5500/employee/resendOtp",
+         { employeeId },
+         { withCredentials: true }
+       );
+   
+       if (response.status === 200) {
+         setShowSuccess(true);
+         setTimeout(() => {
+           setShowSuccess(false);
+         }, 5000);
+       } else {
+         console.error("Failed to resend OTP", response?.data);
+       }
+    } catch (error) {
+       console.error("Error during resend OTP:", error?.message);
+    }
+   };
+   
 
   return (
     <div className="otp-container">

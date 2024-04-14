@@ -36,6 +36,16 @@ goalRouter.post('/createGoal', async (req, res) => {
     }
 });
 
+// Route to get all Goals
+goalRouter.get('/getAllGoal', async (req, res) => {
+    try {
+        const goals = await goalModel.find({});
+        res.status(200).json(goals);
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving all goals', error: error.toString() });
+    }
+});
+
 // Route to get Goal using goal Id
 goalRouter.get('/:goalId', async (req, res) => {
     try {
@@ -112,6 +122,7 @@ goalRouter.delete('/:goalId', async (req, res) => {
         res.status(500).json({ message: 'Error deleting goal', error: error.toString() });
     }
 });
+
 
 
 module.exports = goalRouter;

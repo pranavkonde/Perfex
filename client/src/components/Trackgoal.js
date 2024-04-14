@@ -163,6 +163,11 @@ function calculateWeightedAverage(goals) {
 
         setProfile(response.data);
 
+
+        const goalsResponse = await axios.get(`http://localhost:5500/goal/emp/${token?.data?.employeeId}`);
+        if (!goalsResponse?.data) throw new Error('Network response was not ok');
+        setGoals(goalsResponse.data);
+
       } catch (error) {
         console.error('Error fetching profile:', error);
       }

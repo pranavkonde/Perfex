@@ -32,7 +32,7 @@ const Register = () => {
         console.log(fromData)
       const response = await axios.post('http://localhost:5500/employee/register', fromData, {withCredentials: true} );
       if (response.status === 200) {
-        navigate('/login'); 
+        navigate('/otppage'); 
       } else {
         console.error('Registration failed');
       }

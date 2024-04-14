@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from './Navbar';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import './Register.css'; 
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link, NavLink } from 'react-router-dom';
 import './Login.css';
 import axios from 'axios'; 
+import { UserContext } from '../App';
 
 const Login = () => {
  const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ const Login = () => {
  });
 
  const navigate = useNavigate(); 
+ const user = useContext(UserContext);
 
  const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -24,9 +26,13 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post('http://localhost:5500/employee/login', formData,{withCredentials:true});
-      console.log("jndhbfdjsa",response.data)
       if (response.status === 200) {
+        console.log(user)
+        if(user.employeeType === "Hrpage")
         navigate('/dashboard'); 
+        else if(user.employeeType === "HR") 
+        navigate("/Hrpage")
+      else navigate('/dashboard')
       } else {
         console.error('Login failed');
       }

@@ -51,7 +51,7 @@ const CreateGoalHR = () => {
       className="form-control"
     />
  </div>
- <button type="submit" className="submit-btn">Submit</button>
+ <button type="submit" className="submit-btnHR">Submit</button>
 </form>
 
     </div>

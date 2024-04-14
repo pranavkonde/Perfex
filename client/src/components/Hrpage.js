@@ -17,7 +17,7 @@ const Dashboard = () => {
     <img src="goal.png" alt="Logo"></img>
     <h1>Create Goals</h1>
     <p>Goal setting involves the development of an action plan designed in order to motivate and guide a person or group toward a goal.</p>
-    <Link to= ''>
+    <Link to= '/createGoalHR'>
     <button >Create Goal</button>
     </Link>
     </div>

@@ -181,7 +181,7 @@ employeeRouter.post("/register", async function (req, res) {
   employeeRouter.post("/verify", function (req, res) {
     var employeeId = req.body.employeeId;
     var otp = req.body.otp;
-
+    console.log(req.body)
     if (!employeeId || !otp) {
       return res.status(400).json({
         message:
@@ -193,33 +193,33 @@ employeeRouter.post("/register", async function (req, res) {
       .findOne({ employeeId: employeeId })
       .then(function (value) {
         var currentDate = new Date();
-        if (value.expireAt.getTime() > currentDate.getTime()) {
           bcrypt
             .compare(otp, value.otp)
             .then(function (flag) {
               if (flag) {
                 deleteOtpFromDatabase(employeeId);
                 makeEmployeeVerified(employeeId);
+                console.log(1)
                 res.status(200).json({
                   message: "Employee Verified",
                 });
               } else {
+                console.log(5)
                 return res.status(401).json({
                   message: "Incorrect OTP",
                 });
               }
             })
             .catch(function (err) {
+              console.log(2)
               res.status(401).end();
             });
-        } else {
-          res.status(404).json({
-            message: "Employee Already Verified",
-          });
-        }
       })
       .catch(function (err) {
-        res.status(404).end();
+        console.log(4)
+        res.status(404).json({
+          message: "Employee Already Verified",
+        });
       });
   });
 

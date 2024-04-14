@@ -1,0 +1,24 @@
+/* src/components/AppraisalList.css */
+
+.appraisal-list {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+   }
+   
+   .appraisal-list table {
+    width: 100%;
+    border-collapse: collapse;
+   }
+   
+   .appraisal-list th,
+   .appraisal-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+   }
+   
+   .appraisal-list th {
+    background-color: #f2f2f2;
+   }
+   

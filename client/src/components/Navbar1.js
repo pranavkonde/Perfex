@@ -37,6 +37,11 @@ const Navbar1 = ({ currentPage }) => {
                  <a href="/Mpage" className="Mpage-link">Manager</a>
                 </Link>
                 </button>
+                <button>
+                <Link to="/Hrpage">
+                 <a href="/Hrpage" className="Hrpage-link">Hrpage</a>
+                </Link>
+                </button>
                 
               
               </div>

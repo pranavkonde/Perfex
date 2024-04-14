@@ -6,6 +6,9 @@ import TrackGoal from './components/Trackgoal';
 import Mpage from './components/Mpage'; 
 import Reviewpage from './components/Reviewpage';
 import GoalsTable from './components/Creategoals';
+import Hrpage from './components/Hrpage';
+import Appraisal from './components/Appraisal';
+
 
 import LandingPage from './components/LandingPage';
 import About from './components/About';
@@ -27,6 +30,9 @@ function App() {
         <Route path="/trackgoal" element={<TrackGoal />} />
         <Route path="/Mpage" element={<Mpage/>} />
         <Route path="/Reviewpage" element={<Reviewpage/>} />
+        <Route path="/Hrpage" element={<Hrpage/>} />
+        <Route path="/Appraisal" element={<Appraisal/>} />
+
 
 
         <Route path="/navbar" element={<Navbar/>}></Route>

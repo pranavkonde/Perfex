@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar1 from './Navbar1';
-import './TrackGoal.css';
+import './ReviewPage.css';
 import Profilesection from './Profilesection';
 import axios from 'axios';
 
@@ -108,6 +108,14 @@ const handleManagerRatingChange = (event) => {
     const updatedGoal = { ...selectedGoal, managerComment: newManagerComment };
     updateGoal(updatedGoal);
   };
+
+  const handleEmployeeCommentChange = (event) => {
+    // Assuming you want to update the selected goal's managerComment property
+    const updatedComment = event.target.value;
+    const updatedGoal = { ...selectedGoal, employeeComment: updatedComment };
+    updateGoal(updatedGoal);
+   };
+   
   const handleSave = () => {
     console.log('Goals saved:', goals);
     console.log('Overall Rating:', overallRating.toFixed(2));
@@ -199,13 +207,22 @@ const handleManagerRatingChange = (event) => {
           </div>
         </div>
      </div>
-      <div className="goal-details">
+      <div className="goal-detailss">
             {selectedGoal && (
               <>
                 <h2>{selectedGoal.title}</h2>
                 <p>
                   <strong>Description:</strong> {selectedGoal.description}
                 </p>
+                <div className="employee-comment">
+                      <p>
+                        <strong>employee Comment: <textarea
+                        value={selectedGoal.employeeComment || ''}
+                        onChange={handleEmployeeCommentChange}
+                        placeholder="employee's comment..."
+                      />      </strong>
+                      </p>
+                                    </div>
                 <div className="dropdown-container">
                   <label>
                     <strong>Rating:</strong>{' '}

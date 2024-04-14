@@ -39,12 +39,13 @@
  }
  
  .goal-details {
-  border: 1px solid #ccc;
-  padding: 30px;
-  border-radius: 5px;
-  width: 600px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  gap: 10px;
+   border: 1px solid #ccc;
+   padding: 30px; 
+   border-radius: 5px;
+   width: 100%;
+   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+   gap: 10px;
+ margin-left: 40px;
  }
  
  .dropdown-container label {
@@ -55,6 +56,7 @@
   display: flex;
   flex-direction: column;
  }
+ 
  
  .goal-details h2 {
   margin-bottom: 10px;
@@ -85,13 +87,6 @@
   width: 200px;
  }
  
- .goal-details {
-  width: 20%;
-  margin-left: 7%;
-  height: 100dvh;
-  width: 100%;
- }
- 
  .goal-details button {
   background-color: #4CAF50;
   border: none;
@@ -104,6 +99,7 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  width: 30%;
  }
  
  .overall-rating {
@@ -135,23 +131,36 @@
   margin-right: 5px;
  }
  
- @media (max-width: 768px) {
-  .goal-container {
-     flex-direction: column;
-  }
- 
-  .goal-list, .goal-details {
-     width: 100%;
-     margin: 0;
-  }
- 
-  .goal-details {
-     width: auto;
-     height: auto;
-  }
-}
 
 .profile-goaldetails{
   display: flex;
 }
+
+.employee-comment {
+   margin-top: 20px; /* Adds space above the comment section */
+   font-size: 16px; /* Adjusts the font size of the comment label */
+  }
+  
+  .employee-comment p {
+   margin: 0; /* Removes default margin from the paragraph */
+  }
+  
+  .employee-comment textarea {
+   width: 100%; /* Makes the textarea take up the full width of its container */
+   min-height: 20%; /* Sets a minimum height for the textarea */
+   padding: 10px; /* Adds padding inside the textarea */
+   border: 1px solid #ccc; /* Adds a border around the textarea */
+   border-radius: 5px; /* Rounds the corners of the textarea */
+   resize: vertical; /* Allows the textarea to be resized vertically */
+   font-family: inherit; /* Inherits the font family from the parent element */
+   font-size: inherit; /* Inherits the font size from the parent element */
+  }
+  
+  
+  .employee-comment textarea:focus {
+   border-color: #25316D; /* Changes the border color when the textarea is focused */
+   outline: none; /* Removes the default outline */
+   box-shadow: 0 0 5px rgba(37, 49, 109, 0.5); /* Adds a subtle shadow for depth */
+  }
+  
  

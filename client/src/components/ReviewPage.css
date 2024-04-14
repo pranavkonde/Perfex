@@ -44,10 +44,10 @@
   border: 1px solid #ccc;
   padding: 30px; 
   border-radius: 5px;
-  width: 900px;
+  width: 100%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   gap: 10px;
-
+margin-left: 40px;
  }
 
  .dropdown-containerr label {
@@ -85,12 +85,7 @@
   margin-right: 20px; 
  }
  
- .goal-detailss {
-  width: 50%; 
-  margin-left: 20px; 
-  height: 100%;
-  width: 900px;
- }
+
 
  .goal-detailss button {
   background-color: #4CAF50; 
@@ -104,6 +99,7 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  width: 30%;
  }
 
  .overall-ratingg {
@@ -134,6 +130,26 @@
   display: inline-block; 
   margin-right: 5px; 
 }
+.manager-comment {
+  margin-top: 20px; /* Adds space above the comment section */
+  font-size: 16px; /* Adjusts the font size of the comment label */
+ }
+ 
+ .manager-comment p {
+  margin: 0; /* Removes default margin from the paragraph */
+ }
+ 
+ .manager-comment textarea {
+  width: 100%; /* Makes the textarea take up the full width of its container */
+  min-height: 30%; /* Sets a minimum height for the textarea */
+  padding: 10px; /* Adds padding inside the textarea */
+  border: 1px solid #ccc; /* Adds a border around the textarea */
+  border-radius: 5px; /* Rounds the corners of the textarea */
+  resize: vertical; /* Allows the textarea to be resized vertically */
+  font-family: inherit; /* Inherits the font family from the parent element */
+  font-size: inherit; /* Inherits the font size from the parent element */
+  height: 46px;
+ }
 
  
 

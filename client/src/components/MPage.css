@@ -3,24 +3,54 @@
     justify-content: space-around;
     position: relative; 
     margin: 5%;
+    box-shadow: '0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)';
+    border: '1px solid #25316D';
+  
     
    }
    
    .mpageColumn {
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #25316D; /* Corrected border property */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 30%;
+    margin: 5px; /* Corrected margin property */
     background: white;
-    max-width: 300px; 
-    margin: 5px;
-    
-   }
-   
+    width: 500px;
+    box-shadow: 0px 0px 1px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5); /* Corrected box-shadow property */
+}
+
+
+   /* MPage.css */
+   button {
+    background-color: #25316d;
+    color: white;
+    border: none; /* Removes the default button border */
+    padding: 5px 10px; /* Reduces padding for smaller buttons */
+    font-size: 14px; /* Adjusts the font size to match the smaller button size */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+    border-radius: 5px; /* Rounds the corners of the button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
+}
+
+button:hover {
+    background-color: #1a2654; /* Darkens the background color on hover */
+    transform: scale(1.05); /* Slightly enlarges the button on hover */
+}
+
+.buttonn-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Adjust this value to increase or decrease the distance between buttons */
+    margin: auto;
+    padding: 20px; /* Adds padding around the container for better spacing */
+}
+
+
    
    .mpageColumn-header {
     width: 100%; 
@@ -81,6 +111,7 @@
     padding: 10px 20px; 
     cursor: pointer; 
     margin-top: 20px; 
+    border: #25316d;
     
    }
    
@@ -88,15 +119,11 @@
     background-color: #0056b3; 
    }
   
-   .button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-   }
   
    .comment-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
     width: 100%;
    }
   

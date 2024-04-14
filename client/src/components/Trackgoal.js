@@ -139,6 +139,15 @@ function calculateWeightedAverage(goals) {
     setSelectedGoal(updatedGoal);
   };
 
+  const handleEmployeeCommentChange = (event) => {
+    // Assuming you want to update the selected goal's managerComment property
+    const updatedComment = event.target.value;
+    const updatedGoal = { ...selectedGoal, employeeComment: updatedComment };
+    updateGoal(updatedGoal);
+   };
+   
+
+ 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -201,6 +210,15 @@ function calculateWeightedAverage(goals) {
                 <p>
                   <strong>Description:</strong> {selectedGoal.description}
                 </p>
+                <div className="employee-comment">
+                      <p>
+                        <strong>employee Comment: <textarea
+                        value={selectedGoal.employeeComment || ''}
+                        onChange={handleEmployeeCommentChange}
+                        placeholder="employee's comment..."
+                      />      </strong>
+                      </p>
+                                    </div>
                 <div className="dropdown-container">
                   <label>
                     <strong>Rating:</strong>{' '}

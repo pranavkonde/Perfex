@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import './MPage.css'; 
+import './MPage.css'; // Ensure this path is correct
 import Navbar1 from './Navbar1';
+import { useNavigate } from 'react-router-dom';
+
 
  
 const Trackgoal = () => {
@@ -16,6 +18,14 @@ const Trackgoal = () => {
   ]);
  
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+  const navigate = useNavigate(); // Initialize useNavigate
+
+const handleTaskClick = (task) => {
+  // Navigate to the GoalReview page when a task is clicked
+  navigate('/Reviewpage');
+};
+
  
   const handleCommentChange = (taskId, event) => {
     const newTasks = tasks.map(task =>
@@ -24,36 +34,33 @@ const Trackgoal = () => {
     setTasks(newTasks);
   };
  
+ 
   const renderTasksByStatus = (status) => {
     return tasks
       .filter(task => task.status === status)
       .map(task => (
-        
-<div key ={task.id} className="task" onClick={() => setSelectedEmployee(task)}>
-
+        <div key={task.id} className="task" onClick={() => handleTaskClick(task)}>
           {task.employeeName}
-          {(task.status === 'Pending' || task.status === 'Rejected') && (
-            <div className="button-container">
+          {(task.status === 'Pending') && (
+            <div className="buttonn-container">
               <button onClick={(event) => {
-                event.stopPropagation(); 
+                event.stopPropagation(); // Stop event propagation for buttons
                 acceptTask(task.id, 'Accept');
               }}>Accept</button>
-              {task.status === 'Pending' && (
-                <button onClick={(event) => {
-                  event.stopPropagation(); 
-                  acceptTask(task.id, 'Reject');
-                }}>Reject</button>
-              )}
+              <button onClick={(event) => {
+                event.stopPropagation(); // Stop event propagation for buttons
+                acceptTask(task.id, 'Reject');
+              }}>Reject</button>
             </div>
           )}
           {task.status === 'Pending' && (
-            <div className="comment-container">
+            <div className="commentt-container">
               <input
                 type="text"
                 placeholder="Add comment"
                 value={task.comment}
                 onChange={(event) => handleCommentChange(task.id, event)}
-                onClick={(event) => event.stopPropagation()} 
+                onClick={(event) => event.stopPropagation()} // Stop propagation on comment input click
               />
             </div>
           )}
@@ -107,6 +114,7 @@ const Trackgoal = () => {
           {renderTasksByStatus('Rejected')}
         </div>
       </div>
+      {/* Modal for displaying employee details */}
       {selectedEmployee && (
         <div className="employee-details-modal" onClick={closeModal}>
           <div className="employee-details-modal-content" onClick={(event) => event.stopPropagation()}>

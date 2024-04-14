@@ -1,29 +1,26 @@
-
 .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    display: inline;
-    flex-wrap: wrap; 
-   }
-   
-.column {
   display: flex;
   justify-content: center;
   align-items: center;
-  float: left;
+  flex-wrap: wrap;
+ }
+ 
+ .column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: auto;
   margin: 20px;
-  border: #333;
-  background-color:grey; 
+  border: 1px solid #333; /* Corrected border property */
+  background-color: white;
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   position: relative;
-  max-width: 100% !important;
-}
+  max-width: 100%;
+ }
  
-.column:before {
+ .column:before {
   content: "";
   position: absolute;
   top: -10px;
@@ -33,90 +30,84 @@
   z-index: -1;
   border-radius: 15px;
   transition: background-color 0.3s ease;
-}
-
-.column:hover {
-    background-color: #e8e8e8; 
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 4);
-  }
-   
-   
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-   
-  
-  .column button {
-      display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #25316D;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-     }
-  
-     .column form {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        padding: 20px;
-        width: 80%;
-       }
-
-       .column form div{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-       }
-       
-       .column form div div{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-       }
-       .column label {
-        font-weight: bold;
-        margin-bottom: 5px;
-       }
-       
-       .column input, .column select {
-        padding: 10px;
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        width: 90%;
-       }
-       
-       .column .submit-button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-top: 10px;
-        transition: background-color 0.3s ease;
-        border-radius: 4px;
-       }
-       
-       .column .submit-button:hover {
-        background-color: #0056b3;
-       }
-
-.profileSaveButton{
+ }
+ 
+ .column:hover {
+  background-color:white;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4); /* Corrected box-shadow opacity */
+ }
+ 
+ .column button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #25316D;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+ }
+ 
+ .column form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 20px;
+  width: 80%;
+ }
+ 
+ .column form div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+ }
+ 
+ .column form div div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+ }
+ 
+ .column label {
+  font-weight: bold;
+  margin-bottom: 5px;
+ }
+ 
+ .column input, .column select {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 90%;
+ }
+ 
+ .column .submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+ }
+ 
+ .column .submit-button:hover {
+  background-color: #0056b3;
+ }
+ 
+ .profileSaveButton {
   width: 100px;
   height: 30px;
   background-color: gray;
-}
-
-.profileForm{
+ }
+ 
+ .profileForm {
   display: flex;
-}
-    
-       
+ }
+
+ 
+ 

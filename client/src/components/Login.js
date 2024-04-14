@@ -32,8 +32,7 @@ const Login = () => {
       );
       if (response.status === 200) {
         console.log(user);
-        if (user?.employeeType === "Employee") navigate("/dashboard");
-        else if (user?.employeeType === "HR") navigate("/Hrpage");
+        navigate("/dashboard");
       } else {
         console.error("Login failed");
       }

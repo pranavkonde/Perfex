@@ -38,7 +38,6 @@ function App() {
         })
         .catch((err) => console.error(err));
     };
-    getUser();
   }, []);
 
   return (

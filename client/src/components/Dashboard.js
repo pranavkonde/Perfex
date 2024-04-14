@@ -19,6 +19,7 @@ const Dashboard = () => {
         })
         .catch((err) => console.error(err));
     };
+    getUser();
   }, []);
 
   return (
@@ -45,45 +46,69 @@ const Dashboard = () => {
           </Link>
         </div>
 
-        <div
-          className='column1'
-          style={{
-            backgroundColor: "white",
-            boxShadow:
-              "0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)", // Use #25316D as the color for the box shadow
-            border: "1px solid #25316D",
-          }}
-        >
-          <img src='track.png' alt='Logo'></img>
-          <h1>Track Goals</h1>
-          <p>
-            setting clear milestones and regularly self-evaluating to see how
-            you're progressing toward your desired results.
-          </p>
-          <Link to='/Trackgoal'>
-            <button className='Track-goal-button'>Track Goal</button>
-          </Link>
-        </div>
+        {user?.employeeType !== "HR" ? (
+          <>
+            <div
+              className='column1'
+              style={{
+                backgroundColor: "white",
+                boxShadow:
+                  "0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)", // Use #25316D as the color for the box shadow
+                border: "1px solid #25316D",
+              }}
+            >
+              <img src='track.png' alt='Logo'></img>
+              <h1>Track Goals</h1>
+              <p>
+                setting clear milestones and regularly self-evaluating to see
+                how you're progressing toward your desired results.
+              </p>
+              <Link to='/Trackgoal'>
+                <button className='Track-goal-button'>Track Goal</button>
+              </Link>
+            </div>
 
-        <div
-          className='column1'
-          style={{
-            backgroundColor: "white",
-            boxShadow:
-              "0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)", // Use #25316D as the color for the box shadow
-            border: "1px solid #25316D",
-          }}
-        >
-          <img src='satisfaction.png' alt='Logo'></img>
-          <h1>Review Goals</h1>
-          <p>
-            Achievable goals keep employees motivated.There should be a clear
-            way to measure an employee's progress.
-          </p>
-          <Link to='/Reviewpage'>
-            <button className='Review-goal-button'>Review Goal</button>
-          </Link>
-        </div>
+            <div
+              className='column1'
+              style={{
+                backgroundColor: "white",
+                boxShadow:
+                  "0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)", // Use #25316D as the color for the box shadow
+                border: "1px solid #25316D",
+              }}
+            >
+              <img src='satisfaction.png' alt='Logo'></img>
+              <h1>Review Goals</h1>
+              <p>
+                Achievable goals keep employees motivated.There should be a
+                clear way to measure an employee's progress.
+              </p>
+              <Link to='/Reviewpage'>
+                <button className='Review-goal-button'>Review Goal</button>
+              </Link>
+            </div>
+          </>
+        ) : (
+          <div
+            className='column1'
+            style={{
+              backgroundColor: "white",
+              boxShadow:
+                "0px 0px 10px 0px rgba(37, 49, 109, 0.5), 0px 0px 5px 0px rgba(37, 49, 109, 0.5)", // Use #25316D as the color for the box shadow
+              border: "1px solid #25316D",
+            }}
+          >
+            <img src='track.png' alt='Logo'></img>
+            <h1>Appraisal</h1>
+            <p>
+              setting clear milestones and regularly self-evaluating to see how
+              you're progressing toward your desired results.
+            </p>
+            <Link to='/Appraisal'>
+              <button className='Track-goal-button'>Appraisal</button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

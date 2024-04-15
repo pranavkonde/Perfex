@@ -3,6 +3,14 @@ const { Schema } = mongoose;
 
 const goalSchema = new Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
+    goalId: {
+      type: String,
+      required: true,
+    },
     employeeType: {
       type: String,
       required: true,
@@ -43,6 +51,6 @@ const goalSchema = new Schema(
   { timestamps: true }
 );
 
-const Goal = mongoose.model("Goal", goalSchema);
+const Goal = mongoose.model("myGoal", goalSchema);
 
 module.exports = Goal;

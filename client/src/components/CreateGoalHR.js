@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./CreateGoalHR.css";
-import axios from 'axios';
-
+import axios from "axios";
 
 const CreateGoalHR = () => {
   const [employeeType, setEmployeeType] = useState("");
@@ -11,25 +10,27 @@ const CreateGoalHR = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-       const formData = {
-         employeeType: employeeType,
-         title: goalTitle, 
-         description: goalDescription
-       };
-   
-       const response = await axios.post(
-         "http://localhost:5500/goal/createGoalHR",
-         formData,
-         { withCredentials: true }
-       );
-       if (response.status === 200) {
-         console.log("Goal created successfully");
-       }
+      const formData = {
+        employeeType: employeeType,
+        title: goalTitle,
+        description: goalDescription,
+      };
+
+      const response = await axios.post(
+        "http://localhost:5500/goal/createGoalHR",
+        formData,
+        { withCredentials: true }
+      );
+      if (response?.status === 200) {
+        alert("Goal created successfully");
+        setEmployeeType("");
+        setGoalDescription("");
+        setGoalTitle("");
+      }
     } catch (error) {
-       console.error("Error:", error);
+      console.error("Error:", error);
     }
-   };
-   
+  };
 
   return (
     <div>

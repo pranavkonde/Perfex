@@ -4,22 +4,39 @@ import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import CreateGoalHR from "./CreateGoalHR";
-import axios from 'axios'; // Ensure axios is imported
+import axios from "axios"; // Ensure axios is imported
 
 const GoalsTable = () => {
- const [goals, setGoals] = useState([]);
- const [showDropdown, setShowDropdown] = useState(false);
- const [selectedGoal, setSelectedGoal] = useState("");
- const [modifiedGoals, setModifiedGoals] = useState([]);
+  const [goals, setGoals] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedGoals, setSelectedGoals] = useState([]);
+  const [modifiedGoals, setModifiedGoals] = useState([]);
 
- const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchGoals = async () => {
       try {
-        const response = await axios.get("http://localhost:5500/goal/getAllGoal");
+        const response = await axios.get(
+          "http://localhost:5500/goal/getAllGoal"
+        );
         if (response.status === 200) {
-          setGoals(response.data);
+          setGoals(response?.data);
+        } else {
+          console.error("Failed to fetch goals");
+        }
+      } catch (error) {
+        console.error("Error fetching goals:", error);
+      }
+    };
+
+    const fetchAcceptedGoals = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5500/myGoals/getAllGoal/${user?.employeeId}`
+        );
+        if (response.status === 200) {
+          setSelectedGoals(response?.data);
         } else {
           console.error("Failed to fetch goals");
         }
@@ -29,19 +46,39 @@ const GoalsTable = () => {
     };
 
     fetchGoals();
- }, []);
+    fetchAcceptedGoals();
+  }, []);
 
- const handleAddGoal = () => {
+  const handleAddGoal = () => {
     setShowDropdown(!showDropdown);
- };
+  };
 
- const handleSelectGoal = (goal) => {
-    setSelectedGoal(goal);
-    setShowDropdown(true);
-    addGoalToTable(goal);
- };
+  const handleSelectGoal = async (goal) => {
+    try {
+      const dataObj = {
+        userId: user?.employeeId,
+        goalId: goal?._id,
+        title: goal?.title,
+        description: goal?.description,
+        employeeType: goal?.employeeType,
+      };
+      const response = await axios.post(
+        `http://localhost:5500/myGoals/acceptGoal/${goal._id}`,
+        dataObj,
+        { withCredentials: true }
+      );
+      if (response?.status === 200) {
+        setSelectedGoals([...selectedGoals, goal]);
+        setShowDropdown(false);
+      } else {
+        console.error("Failed to accept goals");
+      }
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+    }
+  };
 
- const addGoalToTable = (goal) => {
+  const addGoalToTable = (goal) => {
     const newGoal = {
       title: goal,
       description: "",
@@ -50,33 +87,32 @@ const GoalsTable = () => {
       department: "",
     };
     setGoals([...goals, newGoal]);
-    setSelectedGoal("");
- };
+  };
 
- const handleRemoveGoal = (index) => {
+  const handleRemoveGoal = (index) => {
     const updatedGoals = [...goals];
     updatedGoals.splice(index, 1);
     setGoals(updatedGoals);
- };
+  };
 
- const handleInputChange = (index, field, value) => {
+  const handleInputChange = (index, field, value) => {
     const updatedGoals = [...goals];
     updatedGoals[index][field] = value;
     setGoals(updatedGoals);
- };
+  };
 
- const handleDateChange = (index, field, value) => {
+  const handleDateChange = (index, field, value) => {
     const updatedGoals = [...goals];
     updatedGoals[index][field] = value;
     setGoals(updatedGoals);
- };
+  };
 
- const handleAddModifiedGoal = () => {
+  const handleAddModifiedGoal = () => {
     setModifiedGoals([...modifiedGoals, ...goals]);
     setGoals([]);
- };
+  };
 
- return (
+  return (
     <div className='goals-container'>
       <header className='header'>
         <div className='navbar'>
@@ -97,7 +133,7 @@ const GoalsTable = () => {
             {showDropdown && (
               <div className='dropdown'>
                 <div className='dropdown-content'>
-                 <div className='goals-list'>
+                  <div className='goals-list'>
                     <div style={{ display: "flex" }}>
                       <h2 style={{ margin: "20px" }}>Goals List</h2>
                       <Link
@@ -114,16 +150,18 @@ const GoalsTable = () => {
                     </div>
 
                     {goals
-                      .filter(goal => goal.employeeType === user?.employeeType)
+                      ?.filter(
+                        (goal) => goal?.employeeType === user?.employeeType
+                      )
                       .map((goal, index) => (
                         <button
                           key={index}
                           onClick={() => handleSelectGoal(goal)}
                         >
-                          {goal.title}
+                          {goal.title} (click to accept goal)
                         </button>
                       ))}
-                 </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -141,11 +179,11 @@ const GoalsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {goals.map((goal, index) => (
+              {selectedGoals.map((goal, index) => (
                 <tr key={index}>
-                 <td>{index + 1}</td>
-                 <td>{goal.title}</td>
-                 <td>
+                  <td>{index + 1}</td>
+                  <td>{goal.title}</td>
+                  <td>
                     <input
                       type='text'
                       value={goal.description}
@@ -153,8 +191,8 @@ const GoalsTable = () => {
                         handleInputChange(index, "description", e.target.value)
                       }
                     />
-                 </td>
-                 <td>
+                  </td>
+                  <td>
                     <input
                       type='date'
                       value={goal.startDate}
@@ -162,8 +200,8 @@ const GoalsTable = () => {
                         handleDateChange(index, "startDate", e.target.value)
                       }
                     />
-                 </td>
-                 <td>
+                  </td>
+                  <td>
                     <input
                       type='date'
                       value={goal.endDate}
@@ -171,8 +209,8 @@ const GoalsTable = () => {
                         handleDateChange(index, "endDate", e.target.value)
                       }
                     />
-                 </td>
-                 <td>
+                  </td>
+                  <td>
                     <input
                       type='text'
                       value={goal.department}
@@ -180,12 +218,12 @@ const GoalsTable = () => {
                         handleInputChange(index, "department", e.target.value)
                       }
                     />
-                 </td>
-                 <td>
+                  </td>
+                  <td>
                     <button onClick={() => handleRemoveGoal(index)}>
                       Remove
                     </button>
-                 </td>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -196,7 +234,7 @@ const GoalsTable = () => {
         </>
       )}
     </div>
- );
+  );
 };
 
 export default GoalsTable;

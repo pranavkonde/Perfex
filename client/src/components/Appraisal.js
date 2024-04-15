@@ -1,8 +1,7 @@
-// src/components/AppraisalList.js
-
 import React from 'react';
+import Navbar1 from './Navbar1'; // Import the Navbar1 component
 import './APpraisal.css'; // Make sure to import the CSS file
-
+ 
 // Data Structure for Employees
 const employees = [
  {
@@ -21,7 +20,7 @@ const employees = [
  },
  // Add more employees as needed
 ];
-
+ 
 // Appraisal Component
 const AppraisalList = () => {
  return (
@@ -42,7 +41,7 @@ const AppraisalList = () => {
           {employees.map((employee) => {
             // Calculate appraisal percentage based on manager's rating, capped at 20%
             const appraisalPercentage = Math.min(((employee.managerRating - 1) / 4) * 20, 20);
-
+ 
             return (
               <tr key={employee.id}>
                 <td>{employee.name}</td>
@@ -63,5 +62,14 @@ const AppraisalList = () => {
     </div>
  );
 };
-
-export default AppraisalList;
+ 
+const AppraisalPage = () => {
+  return (
+    <div>
+      <Navbar1 currentPage="Trackgoal" /> {/* Render Navbar1 component for the entire page */}
+      <AppraisalList /> {/* Render AppraisalList component here */}
+    </div>
+  );
+};
+ 
+export default AppraisalPage;

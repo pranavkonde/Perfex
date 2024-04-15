@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './profileStyle.css';
 import Navbar1 from './Navbar1';
 import axios from 'axios';
-
+ 
 const ProfilePage = () => {
   // Initialize state for each form field
   const [full_name, setName] = useState('');
@@ -15,16 +15,14 @@ const ProfilePage = () => {
   const [department, setDepartment] = useState('');
   const [role, setRole] = useState('');
   const [managerName, setManagerName] = useState('');
-  const [hrName, setHrName] = useState('');
-  const [employeeId, setEmployeeId] = useState('');
-
+  // const [hrName, setHrName] = useState(''); // Removed HR Name
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = await axios.get('http://localhost:5500/employee/authenticate', { withCredentials: true });
-
+ 
         if (!token?.data) throw new Error('Network response was not ok');
-        setEmployeeId(token?.data?.employeeId);
         const response = await axios.get(`http://localhost:5500/employee/${token?.data?.employeeId}`);
         if (!response?.data) throw new Error('Network response was not ok');
         const data = response?.data;
@@ -39,18 +37,18 @@ const ProfilePage = () => {
         setDepartment(data.department);
         setRole(data.role);
         setManagerName(data.managerName);
-        setHrName(data.hrName);
+        // setHrName(data.hrName); // Removed HR Name
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
     };
     fetchData();
   }, []);
-
+ 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-
+ 
     // Prepare the data to be sent to the backend
     const profileData = {
       full_name,
@@ -63,12 +61,12 @@ const ProfilePage = () => {
       department,
       role,
       managerName,
-      hrName,
+      // hrName, // Removed HR Name
     };
-
+ 
     try {
-      const response = await axios.put(`http://localhost:5500/employee/updateProfile/${employeeId}`, profileData, { withCredentials: true });
-
+      const response = await axios.put(`http://localhost:5500/employee/updateProfile/${empId}`, profileData, { withCredentials: true });
+ 
       if (!response?.data) {
         throw new Error('Network response was not ok');
       }
@@ -77,7 +75,7 @@ const ProfilePage = () => {
       console.error('There was a problem with the fetch operation:', error);
     }
   };
-
+ 
   return (
     <div>
       <Navbar1 currentPage="profile" />
@@ -88,13 +86,13 @@ const ProfilePage = () => {
               <div>
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" name="name" value={full_name} onChange={(e) => setName(e.target.value)} required />
-
+ 
                 <label htmlFor="employeeid">Employee ID:</label>
-                <input type="text" id="employeeid" name="employeeid" value={empId} onChange={(e) => setEmpId(e.target.value)} required />
-
+                <input type="text" id="employeeid" name="employeeid" value={empId} disabled  onChange={(e) => setEmpId(e.target.value)} required />
+ 
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-
+                <input type="email" id="email" name="email" value={email} disabled /> {/* Disabled Email Field */}
+ 
                 <label htmlFor="gender">Gender:</label>
                 <select id="gender" name="gender" value={gender} onChange={(e) => setGender(e.target.value)}>
                   <option value="">Select...</option>
@@ -102,29 +100,26 @@ const ProfilePage = () => {
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
-
+ 
                 <label htmlFor="contact">Contact:</label>
                 <input type="tel" id="contact" name="contact" value={phone_no} onChange={(e) => setContact(e.target.value)} required />
-
+ 
                 <label htmlFor="dateOfJoining">Date of Joining:</label>
-                <input type="date" id="dateOfJoining" name="dateOfJoining" value={dateOfJoining} onChange={(e) => setDateOfJoining(e.target.value)} required />
+                <input type="date" id="dateOfJoining" name="dateOfJoining" value={dateOfJoining} disabled /> {/* Disabled Date of Joining Field */}
               </div>
-
+ 
               <div>
                 <label htmlFor="address">Address:</label>
                 <textarea id="address" name="address" rows="4" cols="50" value={address} onChange={(e) => setAddress(e.target.value)} required></textarea>
-
+ 
                 <label htmlFor="setDepartment">Department:</label>
-                <input type="text" id="department" name="department" value={department} onChange={(e) => setDepartment(e.target.value)} required />
-
+                <input type="text" id="department" name="department" value={department} disabled /> {/* Disabled Department Field */}
+ 
                 <label htmlFor="role">Role:</label>
-                <input type="text" id="role" name="role" value={role} onChange={(e) => setRole(e.target.value)} required />
-
+                <input type="text" id="role" name="role" value={role} disabled /> {/* Disabled Role Field */}
+ 
                 <label htmlFor="managerName">Manager Name:</label>
-                <input type="text" id="managerName" name="managerName" value={managerName} onChange={(e) => setManagerName(e.target.value)} required />
-
-                <label htmlFor="hrName">HR Name:</label>
-                <input type="text" id="hrName" name="hrName" value={hrName} onChange={(e) => setHrName(e.target.value)} required />
+                <input type="text" id="managerName" name="managerName" value={managerName} disabled /> {/* Disabled Manager Name Field */}
               </div>
             </div>
             <button className="profileSaveButton" type="submit">
@@ -136,5 +131,6 @@ const ProfilePage = () => {
     </div>
   );
 };
-
+ 
 export default ProfilePage;
+ 

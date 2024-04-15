@@ -1,17 +1,35 @@
 import React, { useState } from "react";
 import "./CreateGoalHR.css";
+import axios from 'axios';
+
 
 const CreateGoalHR = () => {
-  // State to hold form values
   const [employeeType, setEmployeeType] = useState("");
   const [goalTitle, setGoalTitle] = useState("");
   const [goalDescription, setGoalDescription] = useState("");
 
-  // Function to handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission
-    //
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+       const formData = {
+         employeeType: employeeType,
+         title: goalTitle, 
+         description: goalDescription
+       };
+   
+       const response = await axios.post(
+         "http://localhost:5500/goal/createGoalHR",
+         formData,
+         { withCredentials: true }
+       );
+       if (response.status === 200) {
+         console.log("Goal created successfully");
+       }
+    } catch (error) {
+       console.error("Error:", error);
+    }
+   };
+   
 
   return (
     <div>

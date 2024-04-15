@@ -3,9 +3,14 @@ const { Schema } = mongoose;
 
 const goalSchema = new Schema(
   {
+    employeeId:{
+      type: Schema.Types.ObjectId,
+      ref: 'Employee',
+      required: false
+    },
     employeeType: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,

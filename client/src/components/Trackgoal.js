@@ -140,7 +140,6 @@ function calculateWeightedAverage(goals) {
   };
 
   const handleEmployeeCommentChange = (event) => {
-    // Assuming you want to update the selected goal's managerComment property
     const updatedComment = event.target.value;
     const updatedGoal = { ...selectedGoal, employeeComment: updatedComment };
     updateGoal(updatedGoal);

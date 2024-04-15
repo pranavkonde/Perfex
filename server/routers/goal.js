@@ -36,6 +36,23 @@ goalRouter.post('/createGoal', async (req, res) => {
     }
 });
 
+// Route to create goal by HR
+goalRouter.post('/createGoalHR', async (req, res) => {
+    try {
+        const { employeeType, title, description } = req.body;
+        const newGoal = await goalModel.create({
+            employeeType,
+            title,
+            description
+        });
+
+        res.status(201).json(newGoal);
+    } catch (error) {
+        res.status(500).json({ message: 'Error creating goal by HR', error: error.toString() });
+    }
+});
+
+
 // Route to get all Goals
 goalRouter.get('/getAllGoal', async (req, res) => {
     try {
@@ -122,7 +139,6 @@ goalRouter.delete('/:goalId', async (req, res) => {
         res.status(500).json({ message: 'Error deleting goal', error: error.toString() });
     }
 });
-
 
 
 module.exports = goalRouter;

@@ -89,16 +89,27 @@ const GoalsTable = () => {
     setGoals([...goals, newGoal]);
   };
 
-  const handleRemoveGoal = (index) => {
-    const updatedSelectedGoals = [...selectedGoals];
-    updatedSelectedGoals.splice(index, 1);
-    setSelectedGoals(updatedSelectedGoals);
-   };
-   
-  const handleInputChange = (index, field, value) => {
-    const updatedGoals = [...goals];
+  const handleRemoveGoal = async (index, goalId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5500/myGoals/delete/${goalId}`
+      );
+      if (response?.status === 200) {
+        const updatedGoals = [...selectedGoals];
+        updatedGoals.splice(index, 1);
+        setSelectedGoals(updatedGoals);
+      } else {
+        console.error("Failed to accept goals");
+      }
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+    }
+  };
+
+  const handleInputChange = async (index, field, value, goalId) => {
+    const updatedGoals = [...selectedGoals];
     updatedGoals[index][field] = value;
-    setGoals(updatedGoals);
+    setSelectedGoals(updatedGoals);
   };
 
   const handleDateChange = (index, field, value) => {
@@ -184,12 +195,13 @@ const GoalsTable = () => {
                   <td>{index + 1}</td>
                   <td>{goal.title}</td>
                   <td>
-                    <input
+                    <textarea
                       type='text'
                       value={goal.description}
                       onChange={(e) =>
                         handleInputChange(index, "description", e.target.value)
                       }
+                      disabled
                     />
                   </td>
                   <td>
@@ -206,7 +218,12 @@ const GoalsTable = () => {
                       type='date'
                       value={goal.endDate}
                       onChange={(e) =>
-                        handleDateChange(index, "endDate", e.target.value)
+                        handleDateChange(
+                          index,
+                          "endDate",
+                          e.target.value,
+                          goal._id
+                        )
                       }
                     />
                   </td>
@@ -220,7 +237,7 @@ const GoalsTable = () => {
                     />
                   </td>
                   <td>
-                    <button onClick={() => handleRemoveGoal(index)}>
+                    <button onClick={() => handleRemoveGoal(index, goal._id)}>
                       Remove
                     </button>
                   </td>

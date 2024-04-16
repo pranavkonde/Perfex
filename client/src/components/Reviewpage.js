@@ -119,7 +119,7 @@ const GoalTracker = () => {
   };
 
   const handleGoalSelect = (goalId) => {
-    const goal = goals.find((goal) => goal.id === goalId);
+    const goal = goals.find((goal) => goal.goalId === goalId);
     setSelectedGoal(goal);
   };
 
@@ -176,8 +176,7 @@ const GoalTracker = () => {
         setProfile(response.data);
 
         const goalsResponse = await axios.get(
-          `http://localhost:5500/goal/emp/${token?.data?.employeeId}`
-        );
+         `http://localhost:5500/myGoals/getAllGoal/${token?.data?.employeeId}`);       
         if (!goalsResponse?.data)
           throw new Error("Network response was not ok");
         setGoals(goalsResponse.data);
@@ -200,7 +199,7 @@ const GoalTracker = () => {
                 <h2>Goals:</h2>
                 <ul>
                   {goals.map((goal) => (
-                    <li key={goal.id} onClick={() => handleGoalSelect(goal.id)}>
+                    <li key={goal.id} onClick={() => handleGoalSelect(goal.goalId)}>
                       {goal.title}
                     </li>
                   ))}

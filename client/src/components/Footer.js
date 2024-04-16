@@ -14,14 +14,13 @@ const Footer = () => {
 
  return (
     <div className='page-container'>
-      <footer className='site-footer' onClick={scrollToTop}>
+      <footer className='site-footer'>
         <div className='footer-container'>
           <div className='footer-nav'>
             <ul>
               <li><a href='/'>Home</a></li>
               <li><a href='/about'>About</a></li>
-              <li><a href='#privacy'>Privacy</a></li>
-              <li><a href='#terms'>Terms</a></li>
+              <li><a href='/contactForm'>Contact us</a></li>
             </ul>
           </div>
         </div>

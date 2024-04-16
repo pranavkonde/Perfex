@@ -39,6 +39,7 @@
  
  .column button {
   display: block;
+  height: 40px;
   margin: 20px auto;
   padding: 10px 20px;
   background-color: #25316D;

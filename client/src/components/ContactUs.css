@@ -1,0 +1,58 @@
+/* ContactModal.css */
+   
+   .contact-modal {
+    background: white;
+    width: 35rem;
+    height: 30rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    padding: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom:60px ;
+   
+   }
+   
+   .contact-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+   }
+   
+   .contact-modal form {
+    display: flex;
+    flex-direction: column;
+   
+    justify-content: center;
+    align-items: center;
+   }
+   
+   .contact-modal label {
+    margin-bottom: 10px;
+   }
+   
+   .contact-modal input,
+   .contact-modal textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 75%;
+   }
+   
+   .contact-modal button {
+    padding: 10px 20px;
+    background-color: #25316D;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* margin-top: 20px; */
+    
+   }
+   
+   .contact-modal button:hover {
+    background-color: #25316D;
+   }
+   

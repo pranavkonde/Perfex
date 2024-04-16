@@ -85,6 +85,7 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     z-index: 1;
     left: 16%;
+  width: 70%;
     text-align: center;
     justify-content: center;
     
@@ -107,6 +108,7 @@
 .dropdown-content button:hover {
     background-color: #25316D;
     color: white;
+    width: 95%;
 }
 
 .submit-btn{

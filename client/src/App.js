@@ -21,6 +21,7 @@ import Resetpass from "./components/ResetPass";
 import InvalidPage from "./components/InvalidPage";
 import OTPPage from "./components/OtpPage";
 import CreateGoalHR from "./components/CreateGoalHR";
+import ContactForm from "./components/ContactUs";
 
 export const UserContext = createContext({});
 
@@ -65,6 +66,7 @@ function App() {
         <Route path='/otppage' element={<OTPPage />} />
 
         <Route path='/createGoalHR' element={<CreateGoalHR />} />
+        <Route path="/contactForm" element={<ContactForm/>}/>
       </Routes>
     </UserContext.Provider>
   );

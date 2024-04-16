@@ -75,6 +75,26 @@ myGoalRouter.get("/getAllGoal/:userId", async (req, res) => {
   }
 });
 
+// Route to delete a specific Goal by its ID
+myGoalRouter.delete("/delete/:goalId", async (req, res) => {
+  try {
+    const { goalId } = req.params;
+    // Find the goal by its ID and delete it
+    const result = await myGoalModel.findByIdAndDelete(goalId);
+    if (!result) {
+      // If no goal was found with the provided ID, return a 404 status
+      return res.status(404).json({ message: "Goal not found" });
+    }
+    // If the goal was successfully deleted, return a 200 status
+    res.status(200).json({ message: "Goal deleted successfully", goalId });
+  } catch (error) {
+    // If there was an error, return a 500 status with the error message
+    res
+      .status(500)
+      .json({ message: "Error deleting goal", error: error.toString() });
+  }
+});
+
 // // Route to get Goal using goal Id
 // myGoalRouter.get("/:goalId", async (req, res) => {
 //   try {

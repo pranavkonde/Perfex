@@ -228,9 +228,9 @@ const GoalTracker = () => {
                 <p>
                   <strong>Status:</strong> {selectedGoal.status}
                 </p>
-                <p>
+                {/* <p>
                   <strong>Priority:</strong> {selectedGoal.priority}
-                </p>
+                </p> */}
                 <p>
                   <strong>Due Date:</strong> {selectedGoal.dueDate}
                 </p>

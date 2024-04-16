@@ -90,11 +90,11 @@ const GoalsTable = () => {
   };
 
   const handleRemoveGoal = (index) => {
-    const updatedGoals = [...goals];
-    updatedGoals.splice(index, 1);
-    setGoals(updatedGoals);
-  };
-
+    const updatedSelectedGoals = [...selectedGoals];
+    updatedSelectedGoals.splice(index, 1);
+    setSelectedGoals(updatedSelectedGoals);
+   };
+   
   const handleInputChange = (index, field, value) => {
     const updatedGoals = [...goals];
     updatedGoals[index][field] = value;

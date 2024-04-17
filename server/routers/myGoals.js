@@ -62,6 +62,24 @@ myGoalRouter.post("/acceptGoal/:goalId", async (req, res) => {
   }
 });
 
+myGoalRouter.post("/modify", async (req, res) => {
+  try {
+    const data = req.body;
+    data?.map(async (field) => {
+      const modified = await myGoalModel.updateOne({ _id: field._id }, field);
+
+      if (!modified?._id) {
+        return res.status(400).end();
+      }
+    });
+    res.status(200).json({ message: "Modified all Goals" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error creating goal by HR", error: error.toString() });
+  }
+});
+
 // Route to get all Goals
 myGoalRouter.get("/getAllGoal/:userId", async (req, res) => {
   try {

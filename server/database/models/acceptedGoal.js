@@ -23,11 +23,11 @@ const goalSchema = new Schema(
       type: String,
       required: true,
     },
-    sDate: {
+    startDate: {
       type: String,
       required: false,
     },
-    eDate: {
+    endDate: {
       type: String,
       required: false,
     },
@@ -42,6 +42,10 @@ const goalSchema = new Schema(
     title: {
       type: String,
       required: true,
+    },
+    projectName: {
+      type: String,
+      required: false,
     },
     weightage: {
       type: String,

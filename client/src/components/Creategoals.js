@@ -113,14 +113,26 @@ const GoalsTable = () => {
   };
 
   const handleDateChange = (index, field, value) => {
-    const updatedGoals = [...goals];
+    const updatedGoals = [...selectedGoals];
     updatedGoals[index][field] = value;
-    setGoals(updatedGoals);
+    setSelectedGoals(updatedGoals);
   };
 
-  const handleAddModifiedGoal = () => {
-    setModifiedGoals([...modifiedGoals, ...goals]);
-    setGoals([]);
+  const handleAddModifiedGoal = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:5500/myGoals/modify`,
+        selectedGoals,
+        { withCredentials: true }
+      );
+      if (response?.status === 200) {
+        alert("Goals modified successfully!!!");
+      } else {
+        console.error("Failed to accept goals");
+      }
+    } catch (error) {
+      console.error("Error fetching goals:", error);
+    }
   };
 
   return (
@@ -185,7 +197,7 @@ const GoalsTable = () => {
                 <th>Goal Description</th>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th>Department</th>
+                <th>Project Name</th>
                 <th></th>
               </tr>
             </thead>
@@ -218,21 +230,16 @@ const GoalsTable = () => {
                       type='date'
                       value={goal.endDate}
                       onChange={(e) =>
-                        handleDateChange(
-                          index,
-                          "endDate",
-                          e.target.value,
-                          goal._id
-                        )
+                        handleDateChange(index, "endDate", e.target.value)
                       }
                     />
                   </td>
                   <td>
                     <input
                       type='text'
-                      value={goal.department}
+                      value={goal.projectName}
                       onChange={(e) =>
-                        handleInputChange(index, "department", e.target.value)
+                        handleInputChange(index, "projectName", e.target.value)
                       }
                     />
                   </td>

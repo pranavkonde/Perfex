@@ -1,46 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar1 from './Navbar1';
-import './APpraisal.css';
- 
-// Data Structure for Employees
-const initialEmployees = [
-  {
-    id: 1,
-    name: "John Doe",
-    designation: "Software Engineer",
-    managerName: "Jane Smith",
-    managerRating: 2.5,
-  },
-  {
-    id: 2,
-    name: "Jane Doe",
-    designation: "Product Manager",
-    managerName: "John Smith",
-    managerRating: 4.7,
-  },
-  // Add more employees as needed
-];
- 
+import './Appraisal.css';
+import axios from "axios";
+
 const AppraisalPage = () => {
-  // State to store the main appraisal list
-  const [employees, setEmployees] = useState(initialEmployees);
+ const [employees, setEmployees] = useState([]);
+ const [approvedEntries, setApprovedEntries] = useState([]);
+ const [isLoading, setIsLoading] = useState(true); 
+
+ const handleApprove = (employeeId) => {
+  const approvedEmployee = employees.find(emp => emp._id === employeeId);
+  if (!approvedEmployee) {
+     console.error(`Employee with ID ${employeeId} not found.`);
+     return; 
+  }
+  const updatedEmployees = employees.filter(emp => emp._id !== employeeId);
+  setApprovedEntries(prevState => [...prevState, approvedEmployee]);
+  setEmployees(updatedEmployees);
+ };
  
-  // State to store the approved entries
-  const [approvedEntries, setApprovedEntries] = useState([]);
- 
-  // Function to handle approval of an employee
-  const handleApprove = (employeeId) => {
-    // Find the employee to be approved
-    const approvedEmployee = employees.find(emp => emp.id === employeeId);
-    // Update the main appraisal list by removing the approved employee
-    const updatedEmployees = employees.filter(emp => emp.id !== employeeId);
-    // Add the approved employee to the approved entries list
-    setApprovedEntries(prevState => [...prevState, approvedEmployee]);
-    // Update the state with the updated main appraisal list
-    setEmployees(updatedEmployees);
-  };
- 
-  return (
+
+ useEffect(() => {
+    const fetchAppraisal = async () => {
+      try {
+        const tokenResponse = await axios.get(
+          "http://localhost:5500/employee/authenticate",
+          { withCredentials: true }
+        );
+        if (!tokenResponse?.data) throw new Error("Network response was not ok");
+
+        const employeeResponse = await axios.get(
+          `http://localhost:5500/employee/${tokenResponse?.data?.employeeId}`
+        );
+        if (!employeeResponse?.data) throw new Error("Network response was not ok");
+
+        setEmployees([employeeResponse.data]);
+
+        const appraisalResponse = await axios.get(
+          `http://localhost:5500/GetAllAppraisalActionList`
+        );
+        if (!appraisalResponse?.data) throw new Error("Network response was not ok");
+
+
+      } catch (error) {
+        console.error("Error fetching Appraisal:", error);
+      } finally {
+        setIsLoading(false); 
+      }
+    };
+
+    fetchAppraisal();
+ }, []);
+
+ if (isLoading) {
+    return <div>Loading...</div>; 
+ }
+
+ return (
     <div>
       <Navbar1 currentPage="Trackgoal" />
       <div className="appraisal-list">
@@ -59,17 +75,17 @@ const AppraisalPage = () => {
           <tbody>
             {employees.map((employee) => {
               const appraisalPercentage = Math.min(((employee.managerRating - 1) / 4) * 20, 20);
- 
+
               return (
-                <tr key={employee.id}>
-                  <td>{employee.name}</td>
-                  <td>{employee.designation}</td>
-                  <td>{employee.managerName}</td>
-                  <td>{employee.managerRating}</td>
-                  <td>{appraisalPercentage.toFixed(2)}%</td>
-                  <td>
-                    <button onClick={() => handleApprove(employee.id)}>Approve</button>
-                  </td>
+                <tr key={employee._id}>
+                 <td>{employee.full_name}</td>
+                 <td>{employee.department}</td>
+                 <td>{employee.managerName}</td>
+                 <td>{employee.managerRating}</td>
+                 <td>{appraisalPercentage.toFixed(2)}%</td>
+                 <td>
+                    <button onClick={() => handleApprove(employee._id)}>Approve</button>
+                 </td>
                 </tr>
               );
             })}
@@ -80,13 +96,12 @@ const AppraisalPage = () => {
         <h2>Approved Entries</h2>
         <ul>
           {approvedEntries.map((entry) => (
-            <li key={entry.id}>{entry.name} - {((entry.managerRating - 1) / 4) * 20}%</li>
+            <li key={entry._id}>{entry.full_name} - {((entry.managerRating - 1) / 4) * 20}%</li>
           ))}
         </ul>
       </div>
     </div>
-  );
+ );
 };
- 
+
 export default AppraisalPage;
- 

@@ -1,8 +1,9 @@
 const express = require('express');
 const AppraisalDecisionModal = require('../database/models/appraisal');
 const jwt = require('jsonwebtoken');
-
+const employeeModel = require('../database/models/employee')
 const AppraisalDecisionRouter = express.Router();
+const axios= require('axios')
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,6 @@ app.use(express.json());
 // Route to create a new appraisal decision
 AppraisalDecisionRouter.post('/createAppraisalDecision', async (req, res) => {
     try {
-
         const token = req.cookies.token;
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
         const employeeId = decodedToken.employeeId;
@@ -39,6 +39,31 @@ AppraisalDecisionRouter.get('/GetAllAppraisalDecisions', async (req, res) => {
         res.status(500).json({ message: 'Error retrieving appraisal decisions', error: error.toString() });
     }
 });
+
+// Route to get All Appraisal Action List
+AppraisalDecisionRouter.get('/GetAllAppraisalActionList', async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+        const employeeId = decodedToken.employeeId;
+        const response = await axios.get(`http://localhost:5500/employee/${employeeId}`);
+        const employeeDetails = response.data;
+
+        const empObj = {
+            eName: employeeDetails.full_name,
+            role: employeeDetails.role,
+            mName: employeeDetails.managerName
+        };
+        console.log(empObj);
+        res.status(200).json(empObj);
+    } catch (error) {
+        console.error('Error fetching employee details:', error);
+        res.status(500).json({ message: 'Error getting Appraisal List', error: error.toString() });
+    }
+});
+
+module.exports = AppraisalDecisionRouter;
+
 
 // Route to get an appraisal decision by its ID
 AppraisalDecisionRouter.get('/GetByIdAppraisalDecision/:appraisalDecisionId', async (req, res) => {

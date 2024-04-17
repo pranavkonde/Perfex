@@ -1,13 +1,9 @@
-/* src/components/AppraisalList.css */
-
-/* Container */
 .appraisal-list {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
   }
   
-  /* Table */
   .appraisal-list table {
     width: 100%;
     border-collapse: collapse;
@@ -16,7 +12,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Table Header and Cells */
   .appraisal-list th,
   .appraisal-list td {
     border: none;
@@ -24,13 +19,11 @@
     text-align: left;
   }
   
-  /* Table Header */
   .appraisal-list th {
     background-color: #25316D;
     color: white;
   }
   
-  /* Table Body */
   .appraisal-list tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }

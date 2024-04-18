@@ -49,6 +49,7 @@ const Navbar1 = ({ currentPage }) => {
                   </Link>
                 </button>
                 {user?.employeeType === "Manager" && (
+                  <>
                   <button>
                     <Link to='/Mpage'>
                       <a href='/Mpage' className='Mpage-link'>
@@ -56,6 +57,12 @@ const Navbar1 = ({ currentPage }) => {
                       </a>
                     </Link>
                   </button>
+                  <button>
+                  <Link to="/notification">
+                  <a className="notification-link">Notifications</a>
+                  </Link>
+                  </button>
+                  </>
                 )}
                 <button onClick={handleLogout}>Logout</button>
               </div>

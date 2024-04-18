@@ -25,3 +25,58 @@
   .noti-table tbody td{
     padding: 10px;
   }
+
+
+
+  /* Container for Approved Entries */
+.approved-list {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header for Approved Entries */
+.approved-list h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* List for Approved Entries */
+.approved-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Individual Entry in Approved Entries */
+.approved-list li {
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.approved-list li span {
+  font-weight: bold;
+  color: #007bff; /* Or any other color you prefer */
+}
+
+/* Button */
+.approved-list button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+/* Button Hover Effect */
+.approved-list button:hover {
+  background-color: #0056b3;
+}

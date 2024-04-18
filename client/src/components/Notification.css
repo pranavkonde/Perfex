@@ -1,0 +1,27 @@
+.noti-table {
+    width: 100%;
+    /* border-collapse: collapse; */
+   /* margin: 100px; */
+   border: 1px solid #ddd;
+   margin-top: 30px;
+
+  
+  }
+  
+  .noti-table th,
+  .noti-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .noti-table th {
+    background-color: #25316D;
+    color: white;
+    padding: 10px;
+  }
+  
+ 
+  .noti-table tbody td{
+    padding: 10px;
+  }

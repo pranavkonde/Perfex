@@ -93,6 +93,33 @@ myGoalRouter.get("/getAllGoal/:userId", async (req, res) => {
   }
 });
 
+//Route to Update Goal for Track Goals
+myGoalRouter.put("/trackGoalUpdate", async (req, res) => {
+  try {
+    const { userId, goalId, employeeComment, status, rating } = req.body;
+    const updatedGoal = await myGoalModel.findOneAndUpdate(
+      { userId: userId, goalId: goalId },
+      {
+        $set: {
+          employeeComment: employeeComment,
+          status: status,
+          rating: rating,
+        },
+      },
+      { new: true, useFindAndModify: true }
+    );
+
+    if (!updatedGoal) {
+      return res.status(404).json({ message: "Goal not found" });
+    }
+
+    res.status(200).json(updatedGoal);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating Goal", error: error.toString() });
+  }
+});
+ 
+
 // Route to delete a specific Goal by its ID
 myGoalRouter.delete("/delete/:goalId", async (req, res) => {
   try {

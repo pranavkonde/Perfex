@@ -51,7 +51,11 @@ const goalSchema = new Schema(
       type: String,
       require: false,
     },
-  },
+    employeeComment:{
+        type:String,
+        require: false
+      }
+    },
   { timestamps: true }
 );
 

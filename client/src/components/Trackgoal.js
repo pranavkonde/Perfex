@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import Navbar1 from "./Navbar1";
 import "./TrackGoal.css";
 import Profilesection from "./Profilesection";
@@ -14,6 +14,8 @@ const GoalTracker = () => {
   const [showOverallRating, setShowOverallRating] = useState(false);
   const [profile, setProfile] = useState({});
   const [employeeId, setEmployeeId] = useState("");
+
+
 
 
   useEffect(() => {
@@ -45,7 +47,7 @@ const GoalTracker = () => {
     };
 
     fetchProfile();
-  }, []);
+  }, [selectedGoal]);
 
   function calculateWeightedAverage(goals) {
     let weightedSum = 0;
@@ -70,11 +72,21 @@ const GoalTracker = () => {
     setOverallRating(overallRating);
   }, [goals]);
 
-  const handleSave = () => {
-    console.log("Goals saved:", goals);
-    console.log("Overall Rating:", overallRating.toFixed(2));
-    setShowOverallRating(true);
-  };
+
+  const handleSave = async () => {
+    try {
+      const response = await axios.put('http://localhost:5500/myGoals/trackGoalUpdate', selectedGoal);
+       if (response.status === 200) {
+         setShowOverallRating(true);
+       } else {
+         console.error("Failed to update goal");
+       }
+    } catch (error) {
+       console.error("Error updating goal:", error);
+    }
+   };
+   
+    
 
   const handleGoalSelect = (goalId) => {
     const goal = goals.find((goal) => goal.goalId === goalId);
@@ -265,6 +277,7 @@ const GoalTracker = () => {
                     type="date"
                     value={selectedGoal.dueDate}
                     onChange={handleDueDateChange}
+                    disabled
                   />
                 </label>
                 <p>

@@ -1,25 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // Import Axios
 import './Notification.css';
 import Navbar1 from './Navbar1';
 import { Dropdown } from 'react-bootstrap';
 
 const Notification = () => {
-  const [employees, setEmployees] = useState([
-    { name: 'John Doe', goal_name: 'Get review from manager', description: 'Software Engineer', comment: 'Excellent employee', rating: 4.5, status: 'In progress', due_date: '12/24/24', mg_rating: '4.5', mg_comment: 'xyz' },
-    { name: 'Jane Smith', goal_name: 'Parkar Digital', description: 'Project Manager', comment: 'Great leadership skills', rating: 4.2, status: 'Completed', due_date: '12/24/24', mg_rating: '4.5', mg_comment: 'xyz' },
-    { name: 'Mike Johnson', goal_name: 'Do tasks assigned', description: 'UI/UX Designer', comment: 'Creative and detail-oriented', rating: 4.7, status: 'To do', due_date: '12/24/24', mg_rating: '4.5', mg_comment: 'xyz' },
-    // Add more employee data as needed
-  ]);
+ const [employees, setEmployees] = useState([]);
+ const [approvedEmployees, setApprovedEmployees] = useState([]);
+ const [rejectedEmployees, setRejectedEmployees] = useState([]);
 
-  const [approvedEmployees, setApprovedEmployees] = useState([]);
-  const [rejectedEmployees, setRejectedEmployees] = useState([]);
+ useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const response = await axios.get('/notification', {
+          params: {
+            userId: 'yourUserId', 
+            goalId: 'yourGoalId', 
+          },
+        });
+        const { goal, employee } = response.data;
+        setEmployees([employee]);
+      } catch (error) {
+        console.error('Error fetching details:', error);
+      }
+    };
 
-  const handleApprove = (index) => {
-    const approvedEmployee = employees[index];
-    setApprovedEmployees([...approvedEmployees, approvedEmployee]);
-    const updatedEmployees = employees.filter((_, i) => i !== index);
-    setEmployees(updatedEmployees);
-  };
+    fetchDetails();
+ }, []);
+
+  const updateEmployee = async (userId, mg_rating, mg_comment, isVerified) => {
+    try {
+       const response = await axios.post('/updateEmployee', {
+         userId,
+         mg_rating,
+         mg_comment,
+         isVerified,
+       });
+       console.log('Employee updated:', response.data);
+    } catch (error) {
+       console.error('Error updating employee:', error);
+    }
+   };
+
+   
+const handleApprove = (index) => {
+  const approvedEmployee = employees[index];
+  setApprovedEmployees([...approvedEmployees, approvedEmployee]);
+  const updatedEmployees = employees.filter((_, i) => i !== index);
+  setEmployees(updatedEmployees);
+ 
+  updateEmployee(approvedEmployee.userId, 5, 'Great job!', true);
+ };
+ 
 
   const handleReject = (index) => {
     const rejectedEmployee = employees[index];

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const reviewModel = require('../database/models/review'); 
 const goalModel = require('../database/models/goal'); 
+const employeeModel = require("../database/models/employee");
 
 
 const app = express();
@@ -160,6 +161,56 @@ reviewRouter.get('/getReviewByGoal/:goalTitle', async (req, res) => {
         res.status(200).json(reviews);
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving reviews', error: error.toString() });
+    }
+});
+
+
+// Route for Manager Notifications
+reviewRouter.get('/notification', async (req, res)=>{
+    try{
+        const { userId, goalId } = req.body;
+        const goal = await goalModel.findById(goalId);
+        if (!goal) {
+            return res.status(404).json({ message: 'Goal not found' });
+        }
+        const employee = await employeeModel.findById(userId);
+        if(!employee){
+            return res.status(404).json({ message: 'Employee not found' });
+        }
+
+        const combinedDetails = {
+            goal: goal,
+            employee: employee
+        };
+
+        res.json(combinedDetails);
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving details', error: error.toString() });
+    }
+})
+
+// Route to Post manager Rating and comment
+reviewRouter.post('/updateEmployee', async (req, res) => {
+    try {
+        const { userId, mg_rating, mg_comment, isVerified } = req.body;
+        const updatedEmployee = await employeeModel.findByIdAndUpdate(
+            userId,
+            {
+                mg_rating: mg_rating,
+                mg_comment: mg_comment,
+                isVerified: isVerified
+            },
+            { new: true } 
+        );
+
+        if (!updatedEmployee) {
+            return res.status(404).json({ message: 'Employee not found' });
+        }
+
+        res.json(updatedEmployee);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating employee', error: error.toString() });
     }
 });
 

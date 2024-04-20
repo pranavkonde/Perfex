@@ -310,9 +310,9 @@ const GoalTracker = () => {
               <button onClick={exportToExcel} className="export-button">
                 Export to Excel
               </button>
-              <button onClick={handleSaveAllGoals} className="save-button">
+              {/* <button onClick={handleSaveAllGoals} className="save-button">
                 Save All Goals
-              </button>
+              </button> */}
             </div>
           </>
         )}

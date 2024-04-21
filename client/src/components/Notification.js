@@ -12,14 +12,27 @@ const Notification = () => {
  useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const response = await axios.get('/notification', {
-          params: {
-            userId: 'yourUserId', 
-            goalId: 'yourGoalId', 
-          },
-        });
-        const { goal, employee } = response.data;
-        setEmployees([employee]);
+        const token = await axios.get('http://localhost:5500/employee/authenticate', { withCredentials: true });
+ 
+        if (!token?.data) throw new Error('Network response was not ok');
+        const responseEmp = await axios.get(`http://localhost:5500/employee/${token?.data?.employeeId}`);
+        if (!responseEmp?.data) throw new Error('Network response was not ok');
+        const data = responseEmp?.data;
+      
+        const mName = data.managerName
+
+        const details= await axios.get(`http://localhost:5500/myGoals/getNotificationByManager/${mName}`);
+
+        //Pending to Integrate (API--- /updateEmployee)
+
+        // const response = await axios.get('/notification', {
+        //   params: {
+        //     userId: data, 
+        //     goalId: 'yourGoalId', 
+        //   },
+        // });
+        // const { goal, employee } = response.data;
+        setEmployees(details.data);
       } catch (error) {
         console.error('Error fetching details:', error);
       }
@@ -83,9 +96,9 @@ const handleApprove = (index) => {
           {employees.map((employee, index) => (
             <tr key={index}>
               <td>{employee.name}</td>
-              <td>{employee.goal_name}</td>
+              <td>{employee.title}</td>
               <td>{employee.description}</td>
-              <td>{employee.comment}</td>
+              <td>{employee.employeeComment}</td>
               <td>{employee.rating}</td>
               <td>{employee.status}</td>
               <td>{employee.due_date}</td>

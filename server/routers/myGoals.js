@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const myGoalModel = require("../database/models/acceptedGoal");
+const employeeModel = require("../database/models/employee");
 
 const myGoalRouter = express.Router();
 
@@ -97,6 +98,11 @@ myGoalRouter.get("/getAllGoal/:userId", async (req, res) => {
 myGoalRouter.put("/trackGoalUpdate", async (req, res) => {
   try {
     const { userId, goalId, employeeComment, status, rating } = req.body;
+
+    const details = await employeeModel.findById(userId)
+    console.log("asdsasds",details)
+    const mName= details?.managerName;
+    console.log("Asdsa",mName)
     const updatedGoal = await myGoalModel.findOneAndUpdate(
       { userId: userId, goalId: goalId },
       {
@@ -104,6 +110,7 @@ myGoalRouter.put("/trackGoalUpdate", async (req, res) => {
           employeeComment: employeeComment,
           status: status,
           rating: rating,
+          managerName: mName
         },
       },
       { new: true, useFindAndModify: true }
@@ -139,6 +146,18 @@ myGoalRouter.delete("/delete/:goalId", async (req, res) => {
       .json({ message: "Error deleting goal", error: error.toString() });
   }
 });
+
+
+// Route to get all Goal by its Manager Name
+myGoalRouter.get('/getNotificationByManager/:managerName', async (req, res) => {
+  try {
+      const mygoals = await myGoalModel.find({ managerName: req.params.managerName });
+      res.status(200).json(mygoals);
+  } catch (error) {
+      res.status(500).json({ message: 'Error retrieving mygoals', error: error.toString() });
+  }
+});
+
 
 // // Route to get Goal using goal Id
 // myGoalRouter.get("/:goalId", async (req, res) => {
@@ -232,5 +251,16 @@ myGoalRouter.delete("/delete/:goalId", async (req, res) => {
 //       .json({ message: "Error deleting goal", error: error.toString() });
 //   }
 // });
+
+
+//Route to Get Goals based on Manager Name
+myGoalRouter.get('/getMyGoalByManager/:managerName', async (req, res) => {
+  try {
+      const goals = await myGoalModel.find({ managerName: req.params.managerName });
+      res.status(200).json(goals);
+  } catch (error) {
+      res.status(500).json({ message: 'Error retrieving reviews', error: error.toString() });
+  }
+});
 
 module.exports = myGoalRouter;

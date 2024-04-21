@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './profileStyle.css';
 import Navbar1 from './Navbar1';
 import axios from 'axios';
+import { UserContext } from '../App';
  
 const ProfilePage = () => {
   // Initialize state for each form field
@@ -16,6 +17,10 @@ const ProfilePage = () => {
   const [role, setRole] = useState('');
   const [managerName, setManagerName] = useState('');
   // const [hrName, setHrName] = useState(''); // Removed HR Name
+  const [manegerDetails, setManagerDetails] = useState([]);
+  const [selectedManager, setSelectedManager] = useState('');
+
+  const {user, setUser} = useContext(UserContext);
  
   useEffect(() => {
     const fetchData = async () => {
@@ -36,15 +41,29 @@ const ProfilePage = () => {
         setAddress(data.address);
         setDepartment(data.department);
         setRole(data.role);
-        setManagerName(data.managerName);
+        // setManagerName(data.managerName);
         // setHrName(data.hrName); // Removed HR Name
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
       }
     };
+
+    const fetchMangerDetails = async () =>{
+      try{
+        const details = await axios.get('http://localhost:5500/employee/managers/getAllManagers', { withCredentials: true });
+        if (!details?.data) throw new Error('Network response was not ok');
+        console.log(details?.data)
+        setManagerDetails(details?.data)
+      }catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    }
     fetchData();
+    fetchMangerDetails();
   }, []);
  
+
+
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
@@ -60,12 +79,12 @@ const ProfilePage = () => {
       address,
       department,
       role,
-      managerName,
+      selectedManager,
       // hrName, // Removed HR Name
     };
  
     try {
-      const response = await axios.put(`http://localhost:5500/employee/updateProfile/${empId}`, profileData, { withCredentials: true });
+      const response = await axios.put(`http://localhost:5500/employee/updateProfile/${user?.employeeId}`, profileData, { withCredentials: true });
  
       if (!response?.data) {
         throw new Error('Network response was not ok');
@@ -118,8 +137,15 @@ const ProfilePage = () => {
                 <label htmlFor="role">Role:</label>
                 <input type="text" id="role" name="role" value={role} disabled /> {/* Disabled Role Field */}
  
-                <label htmlFor="managerName">Manager Name:</label>
-                <input type="text" id="managerName" name="managerName" value={managerName} disabled /> {/* Disabled Manager Name Field */}
+<label htmlFor="managerName">Manager Name:</label>
+<select id="managerName" name="managerName" value={selectedManager} onChange={(e) => setSelectedManager(e.target.value)}>
+ {/* Assuming you have an array of manager names */}
+ {manegerDetails.map((manager, index) => (
+    <option key={index} value={manager.full_name}>{manager.full_name}</option>
+  ))}
+</select>
+
+                
               </div>
             </div>
             <button className="profileSaveButton" type="submit">

@@ -54,6 +54,10 @@ const goalSchema = new Schema(
     employeeComment:{
         type:String,
         require: false
+      },
+      managerName:{
+        type: String,
+        require: false
       }
     },
   { timestamps: true }

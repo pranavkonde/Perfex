@@ -392,6 +392,21 @@ employeeRouter.post("/register", async function (req, res) {
       res.status(500).json({ message: "Internal Server error" });
     }
   });
-  
+
+  employeeRouter.get("/managers/getAllManagers", async (req, res) => {
+    try {
+        const managers = await employeeModel.find({employeeType: 'Manager'});
+        if (!managers.length) {
+            return res.status(400).json({ message: "No managers found" });
+        }
+        res.status(200).send(managers);
+    } catch (error) {
+      res.
+        console.error(error);
+        res.status(500).json({ message: "Internal Server error" , error: error.toString()});
+    }
+});
+
+
 
 module.exports = employeeRouter;

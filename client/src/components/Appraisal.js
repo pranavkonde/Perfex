@@ -2,24 +2,33 @@ import React, { useEffect, useState } from 'react';
 import Navbar1 from './Navbar1';
 import './Appraisal.css';
 import axios from "axios";
-
+import jsPDF from 'jspdf';
+ 
 const AppraisalPage = () => {
  const [employees, setEmployees] = useState([]);
  const [approvedEntries, setApprovedEntries] = useState([]);
- const [isLoading, setIsLoading] = useState(true); 
-
- const handleApprove = (employeeId) => {
+ const [isLoading, setIsLoading] = useState(true);
+ 
+ const handleApprove = async (employeeId) => {
   const approvedEmployee = employees.find(emp => emp._id === employeeId);
   if (!approvedEmployee) {
-     console.error(`Employee with ID ${employeeId} not found.`);
-     return; 
+      console.error(`Employee with ID ${employeeId} not found.`);
+      return;
   }
   const updatedEmployees = employees.filter(emp => emp._id !== employeeId);
   setApprovedEntries(prevState => [...prevState, approvedEmployee]);
   setEmployees(updatedEmployees);
- };
  
-
+  // Create appraisal PDF
+  const doc = new jsPDF();
+  const appraisalPercentage = Math.min(((approvedEmployee.managerRating - 1) / 4) * 20, 20);
+  const appraisalMessage = `Dear ${approvedEmployee.full_name},\n\nCongratulations! Your appraisal has been approved.\n\nYour Appraisal Percentage: ${appraisalPercentage.toFixed(2)}%\n\nBest regards,\n[Your Company Name]`;
+  doc.text(appraisalMessage, 10, 10);
+  doc.save(`${approvedEmployee.full_name}_Appraisal.pdf`);
+};
+ 
+ 
+ 
  useEffect(() => {
     const fetchAppraisal = async () => {
       try {
@@ -28,34 +37,34 @@ const AppraisalPage = () => {
           { withCredentials: true }
         );
         if (!tokenResponse?.data) throw new Error("Network response was not ok");
-
+ 
         const employeeResponse = await axios.get(
           `http://localhost:5500/employee/${tokenResponse?.data?.employeeId}`
         );
         if (!employeeResponse?.data) throw new Error("Network response was not ok");
-
+ 
         setEmployees([employeeResponse.data]);
-
+ 
         const appraisalResponse = await axios.get(
           `http://localhost:5500/GetAllAppraisalActionList`
         );
         if (!appraisalResponse?.data) throw new Error("Network response was not ok");
-
-
+ 
+ 
       } catch (error) {
         console.error("Error fetching Appraisal:", error);
       } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
-
+ 
     fetchAppraisal();
  }, []);
-
+ 
  if (isLoading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
  }
-
+ 
  return (
     <div>
       <Navbar1 currentPage="Trackgoal" />
@@ -75,7 +84,7 @@ const AppraisalPage = () => {
           <tbody>
             {employees.map((employee) => {
               const appraisalPercentage = Math.min(((employee.managerRating - 1) / 4) * 20, 20);
-
+ 
               return (
                 <tr key={employee._id}>
                  <td>{employee.full_name}</td>
@@ -103,5 +112,5 @@ const AppraisalPage = () => {
     </div>
  );
 };
-
+ 
 export default AppraisalPage;

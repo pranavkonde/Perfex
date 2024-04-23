@@ -3,6 +3,7 @@ import './profileStyle.css';
 import Navbar1 from './Navbar1';
 import axios from 'axios';
 import { UserContext } from '../App';
+import moment from 'moment';
  
 const ProfilePage = () => {
   // Initialize state for each form field
@@ -11,7 +12,7 @@ const ProfilePage = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [phone_no, setContact] = useState('');
-  const [dateOfJoining, setDateOfJoining] = useState('');
+  const [createdAt, setCreatedAt] = useState('');
   const [address, setAddress] = useState('');
   const [department, setDepartment] = useState('');
   const [role, setRole] = useState('');
@@ -37,7 +38,7 @@ const ProfilePage = () => {
         setEmail(data.email);
         setGender(data.gender);
         setContact(data.phone_no);
-        setDateOfJoining(data.dateOfJoining);
+        setCreatedAt(data.createdAt);
         setAddress(data.address);
         setDepartment(data.department);
         setRole(data.role);
@@ -75,7 +76,7 @@ const ProfilePage = () => {
       email,
       gender,
       phone_no,
-      dateOfJoining,
+      createdAt,
       address,
       department,
       role,
@@ -124,7 +125,7 @@ const ProfilePage = () => {
                 <input type="tel" id="contact" name="contact" value={phone_no} onChange={(e) => setContact(e.target.value)} required />
  
                 <label htmlFor="dateOfJoining">Date of Joining:</label>
-                <input type="date" id="dateOfJoining" name="dateOfJoining" value={dateOfJoining} disabled /> {/* Disabled Date of Joining Field */}
+                <input type="date" id="dateOfJoining" name="dateOfJoining" value={moment(createdAt).format('YYYY-MM-DD')} disabled max={new Date().toISOString().split('T')[0]} />
               </div>
  
               <div>

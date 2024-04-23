@@ -1,9 +1,10 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar1 from "./Navbar1";
 import "./TrackGoal.css";
 import Profilesection from "./Profilesection";
 import axios from "axios";
 import * as XLSX from "xlsx";
+import moment from "moment";
 
 const GoalTracker = () => {
   const [goals, setGoals] = useState([]);
@@ -14,9 +15,6 @@ const GoalTracker = () => {
   const [showOverallRating, setShowOverallRating] = useState(false);
   const [profile, setProfile] = useState({});
   const [employeeId, setEmployeeId] = useState("");
-
-
-
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -34,7 +32,6 @@ const GoalTracker = () => {
         if (!response?.data) throw new Error("Network response was not ok");
 
         setProfile(response.data);
-
         const goalsResponse = await axios.get(
           `http://localhost:5500/myGoals/getAllGoal/${token?.data?.employeeId}`
         );
@@ -72,21 +69,21 @@ const GoalTracker = () => {
     setOverallRating(overallRating);
   }, [goals]);
 
-
   const handleSave = async () => {
     try {
-      const response = await axios.put('http://localhost:5500/myGoals/trackGoalUpdate', selectedGoal);
-       if (response.status === 200) {
-         setShowOverallRating(true);
-       } else {
-         console.error("Failed to update goal");
-       }
+      const response = await axios.put(
+        "http://localhost:5500/myGoals/trackGoalUpdate",
+        selectedGoal
+      );
+      if (response.status === 200) {
+        setShowOverallRating(true);
+      } else {
+        console.error("Failed to update goal");
+      }
     } catch (error) {
-       console.error("Error updating goal:", error);
+      console.error("Error updating goal:", error);
     }
-   };
-   
-    
+  };
 
   const handleGoalSelect = (goalId) => {
     const goal = goals.find((goal) => goal.goalId === goalId);
@@ -206,7 +203,10 @@ const GoalTracker = () => {
                 <h2>Goals:</h2>
                 <ul>
                   {goals.map((goal) => (
-                    <li key={goal.id} onClick={() => handleGoalSelect(goal.goalId)}>
+                    <li
+                      key={goal.id}
+                      onClick={() => handleGoalSelect(goal.goalId)}
+                    >
                       {goal.title}
                     </li>
                   ))}
@@ -275,7 +275,7 @@ const GoalTracker = () => {
                   <strong>Due Date:</strong>{" "}
                   <input
                     type="date"
-                    value={selectedGoal.dueDate}
+                    value={moment(selectedGoal.DueDate).format("YYYY-MM-DD")}
                     onChange={handleDueDateChange}
                     disabled
                   />

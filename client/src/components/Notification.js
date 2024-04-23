@@ -3,6 +3,8 @@ import axios from 'axios'; // Import Axios
 import './Notification.css';
 import Navbar1 from './Navbar1';
 import { Dropdown } from 'react-bootstrap';
+import moment from 'moment';
+
 
 const Notification = () => {
  const [employees, setEmployees] = useState([]);
@@ -33,6 +35,7 @@ const Notification = () => {
         // });
         // const { goal, employee } = response.data;
         setEmployees(details.data);
+
       } catch (error) {
         console.error('Error fetching details:', error);
       }
@@ -101,7 +104,7 @@ const handleApprove = (index) => {
               <td>{employee.employeeComment}</td>
               <td>{employee.rating}</td>
               <td>{employee.status}</td>
-              <td>{employee.due_date}</td>
+              <td>{moment(employee.createdAt).format("YYYY-MM-DD")}</td>
               <td><textarea rows={2}></textarea></td>
               <td><input type='text' /></td>
               <td><button className='btn btn-sm' style={{ backgroundColor: '#25316D', color: 'white' }} onClick={() => handleApprove(index)}>Approve</button></td>

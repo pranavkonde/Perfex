@@ -3,6 +3,7 @@ import Navbar1 from "./Navbar1";
 import "./ReviewPage.css";
 import Profilesection from "./Profilesection";
 import axios from "axios";
+import moment from "moment";
 
 const GoalTracker = () => {
   const initialGoals = [
@@ -176,7 +177,8 @@ const GoalTracker = () => {
         setProfile(response.data);
 
         const goalsResponse = await axios.get(
-         `http://localhost:5500/myGoals/getAllGoal/${token?.data?.employeeId}`);       
+          `http://localhost:5500/myGoals/getAllGoal/${token?.data?.employeeId}`
+        );
         if (!goalsResponse?.data)
           throw new Error("Network response was not ok");
         setGoals(goalsResponse.data);
@@ -199,7 +201,10 @@ const GoalTracker = () => {
                 <h2>Goals:</h2>
                 <ul>
                   {goals.map((goal) => (
-                    <li key={goal.id} onClick={() => handleGoalSelect(goal.goalId)}>
+                    <li
+                      key={goal.id}
+                      onClick={() => handleGoalSelect(goal.goalId)}
+                    >
                       {goal.title}
                     </li>
                   ))}
@@ -232,8 +237,10 @@ const GoalTracker = () => {
                   <strong>Priority:</strong> {selectedGoal.priority}
                 </p> */}
                 <p>
-                  <strong>Due Date:</strong> {selectedGoal.dueDate}
+                  <strong>Due Date:</strong>
+                  {moment(selectedGoal.dueDate).format("YYYY-MM-DD")}
                 </p>
+
                 <p>
                   <strong>Weightage:</strong> {selectedGoal.weightage}%
                 </p>

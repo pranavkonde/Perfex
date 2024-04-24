@@ -58,6 +58,19 @@ const goalSchema = new Schema(
       managerName:{
         type: String,
         require: false
+      },
+      managerRating:{
+        type: String,
+        require: false
+      },
+      managerComment:{
+        type: String,
+        require: false
+      },
+      isApproved:{
+        type: String,
+        require: false,
+        default: "NA"
       }
     },
   { timestamps: true }

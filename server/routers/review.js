@@ -190,29 +190,7 @@ reviewRouter.get('/notification', async (req, res)=>{
     }
 })
 
-// Route to Post manager Rating and comment
-reviewRouter.post('/updateEmployee', async (req, res) => {
-    try {
-        const { userId, mg_rating, mg_comment, isVerified } = req.body;
-        const updatedEmployee = await employeeModel.findByIdAndUpdate(
-            userId,
-            {
-                mg_rating: mg_rating,
-                mg_comment: mg_comment,
-                isVerified: isVerified
-            },
-            { new: true } 
-        );
 
-        if (!updatedEmployee) {
-            return res.status(404).json({ message: 'Employee not found' });
-        }
-
-        res.json(updatedEmployee);
-    } catch (error) {
-        res.status(500).json({ message: 'Error updating employee', error: error.toString() });
-    }
-});
 
 
 module.exports = reviewRouter;

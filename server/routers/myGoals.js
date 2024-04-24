@@ -158,6 +158,29 @@ myGoalRouter.get('/getNotificationByManager/:managerName', async (req, res) => {
   }
 });
 
+// Route to Post manager Rating and comment
+myGoalRouter.post('/updateEmployee', async (req, res) => {
+  try {
+      const { userId, goalId, mg_rating, mg_comment, isApproved} = req.body;
+      const updatedEmployee = await myGoalModel.findOneAndUpdate(
+          {userId, goalId},
+          {
+            managerRating: mg_rating,
+            managerComment: mg_comment,
+              isApproved: isApproved
+          },
+          { new: true } 
+      );
+
+      if (!updatedEmployee) {
+          return res.status(404).json({ message: 'Employee not found' });
+      }
+
+      res.json(updatedEmployee);
+  } catch (error) {
+      res.status(500).json({ message: 'Error updating employee', error: error.toString() });
+  }
+});
 
 // // Route to get Goal using goal Id
 // myGoalRouter.get("/:goalId", async (req, res) => {

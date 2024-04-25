@@ -242,7 +242,7 @@ const GoalTracker = () => {
                 </p>
 
                 <p>
-                  <strong>Weightage:</strong> {selectedGoal.weightage}%
+                  <strong>Weightage:</strong> {selectedGoal.weightage}
                 </p>
                 <div className="manager-feedback">
                   <p>

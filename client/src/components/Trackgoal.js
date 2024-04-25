@@ -15,6 +15,7 @@ const GoalTracker = () => {
   const [showOverallRating, setShowOverallRating] = useState(false);
   const [profile, setProfile] = useState({});
   const [employeeId, setEmployeeId] = useState("");
+  const [weightageInput, setWeightageInput] = useState("");
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -37,6 +38,7 @@ const GoalTracker = () => {
         );
         if (!goalsResponse?.data)
           throw new Error("Network response was not ok");
+        console.log("AAAAAAAAAA",goalsResponse.data)
         setGoals(goalsResponse.data);
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -75,6 +77,7 @@ const GoalTracker = () => {
         "http://localhost:5500/myGoals/trackGoalUpdate",
         selectedGoal
       );
+      // console.log("NNNNNN",selectedGoal)
       if (response.status === 200) {
         setShowOverallRating(true);
       } else {
@@ -120,19 +123,31 @@ const GoalTracker = () => {
     updateGoal(updatedGoal);
   };
 
+  const handleWeightageChange = (event) => {
+    const newWeightage = event.target.value;
+    setWeightageInput(newWeightage);
+    const updatedGoal = { ...selectedGoal, weightage: newWeightage };
+    updateGoal(updatedGoal);
+ };
+ 
   const updateGoal = (updatedGoal) => {
     const updatedGoals = goals.map((goal) =>
       goal.id === updatedGoal.id ? updatedGoal : goal
     );
     setGoals(updatedGoals);
     setSelectedGoal(updatedGoal);
-  };
+ };
 
   const handleEmployeeCommentChange = (event) => {
     const updatedComment = event.target.value;
     const updatedGoal = { ...selectedGoal, employeeComment: updatedComment };
     updateGoal(updatedGoal);
   };
+
+
+  
+
+ 
 
   //   useEffect(() => {
   //     const fetchProfile = async () => {
@@ -280,9 +295,16 @@ const GoalTracker = () => {
                     disabled
                   />
                 </label>
-                <p>
-                  <strong>Weightage:</strong> {selectedGoal.weightage}%
-                </p>
+                <label>
+                <strong>Weightage:</strong>{" "}
+                <input
+                 type="string"
+                 value={weightageInput}
+                 onChange={handleWeightageChange}
+                 min="0"
+                 max="100"
+                />
+              </label>
                 <button onClick={handleSave}>Save</button>
               </div>
             </>

@@ -50,16 +50,16 @@ const Navbar1 = ({ currentPage }) => {
                 </button>
                 {user?.employeeType === "Manager" && (
                   <>
-                  <button>
+                  {/* <button>
                     <Link to='/Mpage'>
                       <a href='/Mpage' className='Mpage-link'>
                         Manager
                       </a>
                     </Link>
-                  </button>
+                  </button> */}
                   <button>
                   <Link to="/notification">
-                  <a className="notification-link">Notifications</a>
+                  <a className="notification-link">Requests</a>
                   </Link>
                   </button>
                   </>

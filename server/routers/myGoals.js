@@ -97,8 +97,11 @@ myGoalRouter.get("/getAllGoal/:userId", async (req, res) => {
 //Route to Update Goal for Track Goals
 myGoalRouter.put("/trackGoalUpdate", async (req, res) => {
   try {
-    const { userId, goalId, employeeComment, status, rating } = req.body;
-
+    const { userId, goalId, employeeComment, status, rating , weightage} = req.body;
+    // console.log("Weightage",weightage)
+    // console.log("Status", status)
+    // console.log("employeeComment",employeeComment)
+    // console.log("Rating", rating)
     const details = await employeeModel.findById(userId)
     console.log("asdsasds",details)
     const mName= details?.managerName;
@@ -110,12 +113,13 @@ myGoalRouter.put("/trackGoalUpdate", async (req, res) => {
           employeeComment: employeeComment,
           status: status,
           rating: rating,
-          managerName: mName
+          managerName: mName,
+          weightage: weightage
         },
       },
       { new: true, useFindAndModify: true }
     );
-
+    console.log("UpdatedGoal", updatedGoal)
     if (!updatedGoal) {
       return res.status(404).json({ message: "Goal not found" });
     }
@@ -152,6 +156,7 @@ myGoalRouter.delete("/delete/:goalId", async (req, res) => {
 myGoalRouter.get('/getNotificationByManager/:managerName', async (req, res) => {
   try {
       const mygoals = await myGoalModel.find({ managerName: req.params.managerName });
+      console.log("ababababababa",mygoals)
       res.status(200).json(mygoals);
   } catch (error) {
       res.status(500).json({ message: 'Error retrieving mygoals', error: error.toString() });

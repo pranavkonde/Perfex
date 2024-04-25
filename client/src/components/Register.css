@@ -1,6 +1,14 @@
 .retur{
     font-family: 'Times New Roman', Times, serif;
 }
+ .error-message{
+    color: red;
+    display: flex;
+    font-size: small;
+    margin-bottom: 0 !important;
+    
+    
+}
 .RegisterContainer{
     align-items: center;
     justify-content: center;

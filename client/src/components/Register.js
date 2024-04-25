@@ -18,7 +18,64 @@ const Register = () => {
     confirmPassword: '',
  });
 
+ const [errors, setErrors] = useState({});
+
  const navigate = useNavigate(); 
+
+ const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    // Full name validation
+    if (!/^[A-Za-z]+(?: [A-Za-z]+)?$/.test(formData.full_name)) {
+        errors.full_name = "Invalid full name";
+        isValid = false;
+    }
+
+    // Email validation
+    if (!/^[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email)) {
+        errors.email = "Invalid email";
+        isValid = false;
+    }
+
+    // Phone number validation
+    if (!/^[6-9]\d{9}$/.test(formData.phone_no)) {
+        errors.phone_no = "Invalid phone number";
+        isValid = false;
+    }
+
+    // Password validation
+    if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/.test(formData.password)) {
+        errors.password = "Invalid password";
+        isValid = false;
+    }
+
+    // Confirm password validation
+    if (formData.password !== formData.confirmPassword) {
+        errors.confirmPassword = "Passwords do not match";
+        isValid = false;
+    }
+
+
+    // Department validation
+    if (!formData.department) {
+      errors.department = "Please select a department";
+      isValid = false;
+   }
+    // Role validation
+    if (!formData.role) {
+      errors.role = "Please select a role";
+      isValid = false;
+  }
+    // Employee Type validation
+    if (!formData.employeeType) {
+      errors.employeeType = "Please select an employee type";
+      isValid = false;
+  }
+
+    setErrors(errors);
+    return isValid;
+ };
 
  const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -27,22 +84,22 @@ const Register = () => {
 
  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!validateForm()) {
+        return; // Prevent form submission if validation fails
+    }
     try {
         const { confirmPassword, ...fromData} = formData;
         console.log(fromData)
-      const response = await axios.post('http://localhost:5500/employee/register', fromData, {withCredentials: true} );
-      if (response.status === 200) {
-        navigate('/otppage'); 
-      } else {
-        console.error('Registration failed');
-      }
+        const response = await axios.post('http://localhost:5500/employee/register', fromData, {withCredentials: true} );
+        if (response.status === 200) {
+            navigate('/otppage'); 
+        } else {
+            console.error('Registration failed');
+        }
     } catch (error) {
-      console.error('Error during registration:', error?.message);
+        console.error('Error during registration:', error?.message);
     }
  };
-
-
-
  return (
     <>
       <Navbar />
@@ -66,6 +123,7 @@ const Register = () => {
                     value={formData.full_name}
                     onChange={handleInputChange}
                  />
+                 {errors.full_name && <p className="error-message">{errors.full_name}</p>}
                 </div>
                 <div className="form-group">
                  <input
@@ -77,6 +135,7 @@ const Register = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                  />
+                 {errors.email && <p className="error-message">{errors.email}</p>}
                 </div>
                 <div className="form-group">
                  <input
@@ -88,6 +147,7 @@ const Register = () => {
                     value={formData.phone_no}
                     onChange={handleInputChange}
                  />
+                 {errors.phone_no && <p className="error-message">{errors.phone_no}</p>}
                 </div>
                 <div className="form-group">
                  <select
@@ -108,6 +168,7 @@ const Register = () => {
                     <option>Freelancer/Contractor</option>
                     <option>Others</option>
                  </select>
+                 {errors.department && <p className="error-message">{errors.department}</p>}
                 </div>
                 <div className="form-group">
                  <select
@@ -118,7 +179,6 @@ const Register = () => {
                     onChange={handleInputChange}
                     placeholder='Select Role'
                  >  
-                    {/* <option>Select Role</option> */}
                     <option value="" disabled selected hidden>Select Role </option>
                     <option>Intern</option>
                     <option>FTE</option>
@@ -126,8 +186,8 @@ const Register = () => {
                     <option>Team-Lead</option>
                     <option>Graphic/UI UX Designer</option>
                     <option>Customer/Sales/Marketing Manager</option>
-                    
                  </select>
+                 {errors.role && <p className="error-message">{errors.role}</p>}
                 </div>
                 <div className="form-group">
                  <select
@@ -142,6 +202,7 @@ const Register = () => {
                     <option>Employee</option>
                     <option>HR</option>
                  </select>
+                 {errors.employeeType && <p className="error-message">{errors.employeeType}</p>}
                 </div>
                 <div className="form-group">
                  <input
@@ -153,6 +214,7 @@ const Register = () => {
                     value={formData.password}
                     onChange={handleInputChange}
                  />
+                 {errors.password && <p className="error-message">{errors.password}</p>}
                 </div>
                 <div className="form-group">
                  <input
@@ -164,6 +226,7 @@ const Register = () => {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                  />
+                 {errors.confirmPassword && <p className="error-message">{errors.confirmPassword}</p>}
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
               </form>

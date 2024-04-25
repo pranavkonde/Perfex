@@ -3,14 +3,14 @@ import axios from 'axios';
 import './Notification.css';
 import Navbar1 from './Navbar1';
 import moment from 'moment';
-
+ 
 const Notification = () => {
  const [employees, setEmployees] = useState([]);
  const [approvedEmployees, setApprovedEmployees] = useState([]);
  const [rejectedEmployees, setRejectedEmployees] = useState([]);
  const [managerRating, setManagerRating] = useState("");
  const [managerComment, setManagerComment] = useState("");
-
+ 
  useEffect(() => {
     const fetchDetails = async () => {
       try {
@@ -19,29 +19,29 @@ const Notification = () => {
         const responseEmp = await axios.get(`http://localhost:5500/employee/${token?.data?.employeeId}`);
         if (!responseEmp?.data) throw new Error('Network response was not ok');
         const mName = responseEmp?.data?.managerName;
-
+ 
         const details = await axios.get(`http://localhost:5500/myGoals/getNotificationByManager/${mName}`);
         if (!details?.data) throw new Error('Network response was not ok');
-
+ 
         const newEmployees = await Promise.all(details?.data?.map(async (detail) => {
           const response = await axios.get(`http://localhost:5500/employee/${detail?.userId}`, {withCredentials: true});
           if (!response?.data) throw new Error('Network response was not ok');
           detail.name = response?.data?.full_name;
           return detail;
         }));
-
+ 
         setEmployees(newEmployees.filter(detail => detail.isApproved === "NA"));
         setApprovedEmployees(newEmployees.filter(detail => detail.isApproved === "Approved"));
         setRejectedEmployees(newEmployees.filter(detail => detail.isApproved === "Rejected"));
-
+ 
       } catch (error) {
         console.error('Error fetching details:', error);
       }
     };
-
+ 
     fetchDetails();
  }, []);
-
+ 
  const handleApprove = async (index, employee) => {
     try {
       const objData = {
@@ -61,7 +61,7 @@ const Notification = () => {
       console.log("Error in handle approve", error);
     }
  };
-
+ 
  const handleReject = async (index, employee) => {
     try {
       const objData = {
@@ -81,7 +81,7 @@ const Notification = () => {
       console.log("Error in handle reject", error);
     }
  };
-
+ 
  return (
     <div>
       <Navbar1 currentPage="Mpage" />
@@ -126,7 +126,7 @@ const Notification = () => {
             <li key={employee.userId}>{employee.name}</li>
           ))}
         </ul>
-
+ 
         <h2>Rejected</h2>
         <ul>
           {rejectedEmployees.map((employee, index) => (
@@ -137,5 +137,6 @@ const Notification = () => {
     </div>
  );
 };
-
+ 
 export default Notification;
+ 

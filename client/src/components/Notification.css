@@ -1,82 +1,110 @@
 .noti-table {
-    width: 100%;
-    /* border-collapse: collapse; */
-   /* margin: 100px; */
-   border: 1px solid #ddd;
-   margin-top: 30px;
+  width: 100%;
+  /* border-collapse: collapse; */
+ /* margin: 100px; */
+ border: 1px solid #ddd;
+ margin-top: 30px;
 
-  
+
+}
+
+.noti-table th,
+.noti-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.noti-table th {
+  background-color: #ddd;
+  color: #25316D;
+  padding: 10px;
+}
+
+
+.noti-table tbody td{
+  padding: 10px;
+}
+
+
+
+.tables-container {
+  display: flex;
+  justify-content: space-between; /* Optional: Adds space between the tables */
+  flex-wrap: wrap; /* Allows the items to wrap as needed */
+ }
+ 
+
+
+/* Approve Table Css */
+
+.Approve h3{
+text-align: center;
+margin-top: 50px;
+}
+.Approve{
+/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+width: 50%;
+margin: auto;
+}
+
+.approve-table{
+  /* width: 50%;    */
+  margin: auto;
+ border: 1px solid #ddd;
+ margin-top: 20px;
+ margin-bottom: 20px;
+}
+
+
+.approve-table th,
+.approve-table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.approve-table th {
+  background-color: #ddd;
+  color: #25316D;
+  padding: 10px;
+}
+.approve-table tbody td{
+  padding: 10px;
+}
+
+
+/* Reject Table css */
+
+.Reject h3{
+  text-align: center;
+  margin-top: 50px;
+}
+.Reject{
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  width: 50%;
+  margin: auto;
+}
+
+  .reject-table{
+    /* width: 50%;    */
+    margin: auto;
+   border: 1px solid #ddd;
+   margin-top:20px;
+    margin-bottom: 20px;
   }
-  
-  .noti-table th,
-  .noti-table td {
+
+
+  .reject-table th,
+  .reject-table td {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  
-  .noti-table th {
-    background-color: #25316D;
-    color: white;
+  .reject-table th {
+    background-color: #ddd;
+    color: #25316D;
     padding: 10px;
   }
-  
- 
-  .noti-table tbody td{
+  .reject-table tbody td{
     padding: 10px;
   }
-
-
-
-  /* Container for Approved Entries */
-.approved-list {
-  width: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Header for Approved Entries */
-.approved-list h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* List for Approved Entries */
-.approved-list ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-/* Individual Entry in Approved Entries */
-.approved-list li {
-  margin-bottom: 10px;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.approved-list li span {
-  font-weight: bold;
-  color: #007bff; /* Or any other color you prefer */
-}
-
-/* Button */
-.approved-list button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-}
-
-/* Button Hover Effect */
-.approved-list button:hover {
-  background-color: #0056b3;
-}

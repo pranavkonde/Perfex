@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar1 from './Navbar1';
-import './Appraisal.css';
+import './APpraisal.css';
 import axios from "axios";
 import jsPDF from 'jspdf';
  

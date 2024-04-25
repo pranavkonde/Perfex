@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext ,useState} from "react";
 import "./Navbar1.css";
+import { Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import axios from "axios";
@@ -11,14 +12,23 @@ const Navbar1 = ({ currentPage }) => {
 
   const { user, setUser } = useContext(UserContext);
 
+  const [showLogoutMessage, setShowLogoutMessage] = useState(false);
+
   const handleLogout = async () => {
     axios
       .get("http://localhost:5500/employee/logout", { withCredentials: true })
       .then((res) => {
-        if (res?.status === 200) navigate("/");
+        if (res?.status === 200){
+        setShowLogoutMessage(true);
+        setTimeout(()=>{
+          setShowLogoutMessage(false);
+            navigate("/");
+        },2000);
+      }
       })
       .catch((err) => {
         console.log(err);
+
       });
   };
 
@@ -72,7 +82,14 @@ const Navbar1 = ({ currentPage }) => {
           </>
         )}
       </div>
+      {/* Popup message for logout success */}
+      {showLogoutMessage && (
+        <Alert className="logout-success-message" variant="success">
+          Successfully logged out.
+        </Alert>
+      )}
     </div>
+    
   );
 };
 

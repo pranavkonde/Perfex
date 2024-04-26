@@ -74,7 +74,8 @@ const Navbar1 = ({ currentPage }) => {
                   </button>
                   </>
                 )}
-                <button onClick={handleLogout}>Logout</button>
+                <button onClick={handleLogout} style={{ textDecoration: 'underline' }}>Logout</button>
+
               </div>
             ) : (
               <></>

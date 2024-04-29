@@ -58,7 +58,7 @@ const Navbar1 = ({ currentPage }) => {
                     </a>
                   </Link>
                 </button>
-                {user?.employeeType === "Manager" && (
+                {user?.employeeType !== "Employee" && (
                   <>
                   {/* <button>
                     <Link to='/Mpage'>
@@ -74,11 +74,8 @@ const Navbar1 = ({ currentPage }) => {
                   </button>
                   </>
                 )}
-                <button>
-                <Link onClick={handleLogout}>
-                  <a className="notification-link">Logout</a>
-                  </Link>
-                  </button>
+                <button onClick={handleLogout} style={{ textDecoration: 'underline' }}>Logout</button>
+
               </div>
             ) : (
               <></>

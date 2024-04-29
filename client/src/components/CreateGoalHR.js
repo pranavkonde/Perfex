@@ -46,6 +46,7 @@ const CreateGoalHR = () => {
             <option value=''>Select</option>
             <option value='Manager'>Manager</option>
             <option value='Employee'>Employee</option>
+            <option value='HR'>HR</option>
           </select>
         </div>
         <div className='form-group'>

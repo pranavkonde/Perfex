@@ -201,6 +201,7 @@ const Register = () => {
                     <option>Manager</option>
                     <option>Employee</option>
                     <option>HR</option>
+                    <option>Admin</option>
                  </select>
                  {errors.employeeType && <p className="error-message">{errors.employeeType}</p>}
                 </div>

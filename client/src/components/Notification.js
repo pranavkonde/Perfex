@@ -21,7 +21,6 @@ const Notification = () => {
         const responseEmp = await axios.get(`http://localhost:5500/employee/${token?.data?.employeeId}`);
         if (!responseEmp?.data) throw new Error('Network response was not ok');
         const mName = responseEmp?.data?.managerName;
- 
         const details = await axios.get(`http://localhost:5500/myGoals/getNotificationByManager/${mName}`);
         if (!details?.data) throw new Error('Network response was not ok');
  

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Navbar1 from "./Navbar1";
 import "./TrackGoal.css";
 import Profilesection from "./Profilesection";
@@ -16,6 +18,8 @@ const GoalTracker = () => {
   const [profile, setProfile] = useState({});
   const [employeeId, setEmployeeId] = useState("");
   const [weightageInput, setWeightageInput] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -80,6 +84,10 @@ const GoalTracker = () => {
       // console.log("NNNNNN",selectedGoal)
       if (response.status === 200) {
         setShowOverallRating(true);
+        setShowSuccess(true); 
+        setTimeout(() => {
+          setShowSuccess(false)
+        },1000);
       } else {
         console.error("Failed to update goal");
       }
@@ -209,6 +217,13 @@ const GoalTracker = () => {
   return (
     <div>
       <Navbar1 currentPage="Trackgoal" />
+      <div className="Alert">
+      {showSuccess && (
+                <Alert variant="success" onClose={() => setShowSuccess(false)} >
+                Goal saved successfully!
+                </Alert>
+              )}
+      </div>
       <div className="profile-goaldetails">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <Profilesection profile={profile} />

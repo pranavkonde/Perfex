@@ -1,4 +1,7 @@
 
+.Alert{
+    text-align: center;
+}
 .form-group, .btn {
     text-align: center;
    }

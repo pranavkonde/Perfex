@@ -74,7 +74,11 @@ const Navbar1 = ({ currentPage }) => {
                   </button>
                   </>
                 )}
-                <button onClick={handleLogout}>Logout</button>
+                <button>
+                <Link onClick={handleLogout}>
+                  <a className="notification-link">Logout</a>
+                  </Link>
+                  </button>
               </div>
             ) : (
               <></>
@@ -83,11 +87,13 @@ const Navbar1 = ({ currentPage }) => {
         )}
       </div>
       {/* Popup message for logout success */}
+      <div className="Alert">
       {showLogoutMessage && (
         <Alert className="logout-success-message" variant="success">
           Successfully logged out.
         </Alert>
       )}
+      </div>
     </div>
     
   );

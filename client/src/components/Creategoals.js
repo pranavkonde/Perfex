@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Container, Row, Col, Button, Form, Alert } from "react-bootstrap";
 import "./Creategoals.css";
 import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import CreateGoalHR from "./CreateGoalHR";
 import axios from "axios"; // Ensure axios is imported
+import { useNavigate } from "react-router-dom";
 
 const GoalsTable = () => {
   const [goals, setGoals] = useState([]);
@@ -13,6 +15,9 @@ const GoalsTable = () => {
   const [modifiedGoals, setModifiedGoals] = useState([]);
 
   const { user, setUser } = useContext(UserContext);
+
+  const [showSuccess, setShowSuccess] = useState(false); // State for success message
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGoals = async () => {
@@ -125,15 +130,28 @@ const GoalsTable = () => {
         selectedGoals,
         { withCredentials: true }
       );
-      if (response?.status === 200) {
-        alert("Goals modified successfully!!!");
+      if (response.status === 200) {
+        console.log(user);
+        setShowSuccess(true); 
+        setTimeout(() => {
+          navigate("/dashboard"); 
+        }, 1000);
       } else {
         console.error("Failed to accept goals");
       }
     } catch (error) {
       console.error("Error fetching goals:", error);
     }
+    //   if (response?.status === 200) {
+    //     alert("Goals modified successfully!!!");
+    //   } else {
+    //     console.error("Failed to accept goals");
+    //   }
+    // } catch (error) {
+    //   console.error("Error fetching goals:", error);
+    // }
   };
+  
 
   return (
     <div className='goals-container'>
@@ -147,6 +165,13 @@ const GoalsTable = () => {
           </button>
         </div>
       </header>
+      <div className="Alert">
+      {showSuccess && (
+                <Alert variant="success" onClose={() => setShowSuccess(false)} >
+                 Modified Goals Submitted successfully!
+                </Alert>
+              )}
+      </div>
       <h1 className='page-title'>Create Your Goals</h1>
       {user?.employeeType === "HR" ? (
         <CreateGoalHR />

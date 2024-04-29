@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from "react-bootstrap";
 import axios from 'axios';
 import './Notification.css';
 import Navbar1 from './Navbar1';
@@ -10,6 +11,7 @@ const Notification = () => {
  const [rejectedEmployees, setRejectedEmployees] = useState([]);
  const [managerRating, setManagerRating] = useState("");
  const [managerComment, setManagerComment] = useState("");
+ const [showSuccess, setShowSuccess] = useState({ show: false, message: '' });
  
  useEffect(() => {
     const fetchDetails = async () => {
@@ -56,6 +58,10 @@ const Notification = () => {
         const updatedEmployees = employees.filter((_, i) => i !== index);
         setEmployees(updatedEmployees);
         setApprovedEmployees([...approvedEmployees, employee]);
+        setShowSuccess({ show: true, message: 'Employee goal Approved Successfully' }); // Show the success alert with a message
+      setTimeout(() => {
+        setShowSuccess({ show: false, message: '' }); // Hide the success alert after 1 second
+      }, 1000);
       } else throw new Error('Network response was not ok');
     } catch (error) {
       console.log("Error in handle approve", error);
@@ -76,6 +82,10 @@ const Notification = () => {
         const updatedEmployees = employees.filter((_, i) => i !== index);
         setEmployees(updatedEmployees);
         setRejectedEmployees([...rejectedEmployees, employee]);
+        setShowSuccess({ show: true, message: 'Employee goal Rejected Successfully' }); // Show the success alert with a message
+      setTimeout(() => {
+        setShowSuccess({ show: false, message: '' }); // Hide the success alert after 1 second
+      }, 1000);
       } else throw new Error('Network response was not ok');
     } catch (error) {
       console.log("Error in handle reject", error);
@@ -85,6 +95,14 @@ const Notification = () => {
  return (
     <div>
       <Navbar1 currentPage="Mpage" />
+      <div className="Alert">
+      {showSuccess.show && (
+                 <Alert variant="success" onClose={() => setShowSuccess({ show: false, message: '' })} dismissible>
+                 {showSuccess.message}
+              </Alert>
+              )}
+              
+      </div>
       <table className='noti-table'>
         <thead>
           <tr>
@@ -119,20 +137,67 @@ const Notification = () => {
           ))}
         </tbody>
       </table>
-      <div className='approved-list'>
-        <h2>Approved</h2>
-        <ul>
+      
+      <div style={{display:'flex'}}>
+      <div className='Approve'>
+        <h2>Approved List</h2>
+        <table className='approve-table'>
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Manager Comment</th>
+              <th>Manager Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            {approvedEmployees.map((employee,index)=>(
+                <tr>
+                <td  key={employee.userId} >{employee.name} </td>
+                <td key={employee.mg_comment}>{employee.managerComment}</td>
+                <td key={employee.mg_rating}>{employee.managerRating}</td>
+              </tr>
+            ))}
+            
+          </tbody>
+        </table>
+        {/* <ul>
           {approvedEmployees.map((employee, index) => (
             <li key={employee.userId}>{employee.name}</li>
           ))}
-        </ul>
- 
-        <h2>Rejected</h2>
-        <ul>
+        </ul> */}
+        </div>
+
+
+        <div className='Reject'>
+        <h2>Rejected List</h2>
+        <table className='reject-table'>
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Manager Comment</th>
+              <th>Manager Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+          {rejectedEmployees.map((employee,index)=>(
+                <tr key={employee.userId}>
+                <td >{employee.name} </td>
+                <td key={employee.mg_comment}>{employee.managerComment}</td>
+                <td key={employee.mg_rating}>{employee.managerRating}</td>
+              </tr>
+            ))}
+            
+          </tbody>
+        </table>
+
+
+        {/* <ul>
           {rejectedEmployees.map((employee, index) => (
             <li key={employee.userId}>{employee.name}</li>
           ))}
-        </ul>
+        </ul> */}
+        
+        </div>
       </div>
     </div>
  );

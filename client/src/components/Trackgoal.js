@@ -46,7 +46,7 @@ const GoalTracker = () => {
     };
 
     fetchProfile();
-  }, [selectedGoal]);
+  }, []);
 
   function calculateWeightedAverage(goals) {
     let weightedSum = 0;
@@ -69,7 +69,7 @@ const GoalTracker = () => {
   useEffect(() => {
     const overallRating = calculateWeightedAverage(goals);
     setOverallRating(overallRating);
-  }, [goals]);
+  }, []);
 
   const handleSave = async () => {
     try {
@@ -134,7 +134,7 @@ const GoalTracker = () => {
     const updatedGoals = goals.map((goal) =>
       goal.id === updatedGoal.id ? updatedGoal : goal
     );
-    setGoals(updatedGoals);
+    // setGoals(updatedGoals);
     setSelectedGoal(updatedGoal);
  };
 

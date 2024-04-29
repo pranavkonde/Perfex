@@ -156,7 +156,6 @@ myGoalRouter.delete("/delete/:goalId", async (req, res) => {
 myGoalRouter.get('/getNotificationByManager/:managerName', async (req, res) => {
   try {
       const mygoals = await myGoalModel.find({ managerName: req.params.managerName });
-      console.log("ababababababa",mygoals)
       res.status(200).json(mygoals);
   } catch (error) {
       res.status(500).json({ message: 'Error retrieving mygoals', error: error.toString() });
@@ -290,5 +289,18 @@ myGoalRouter.get('/getMyGoalByManager/:managerName', async (req, res) => {
       res.status(500).json({ message: 'Error retrieving reviews', error: error.toString() });
   }
 });
+
+
+myGoalRouter.get("/getGoalForAppraisal", async (req, res)=>{
+  try{
+    const requests= await myGoalModel.find({isApproved:"Approved"});
+    if (!requests) {
+      return res.status(404).json({ message: "Approved Request not found" });
+    }
+    res.status(200).json(requests);
+  }catch (error) {
+      res.status(500).json({ message: 'Error retrieving Approved List', error: error.toString() });
+  }
+  });
 
 module.exports = myGoalRouter;

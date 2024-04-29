@@ -58,7 +58,7 @@ const Navbar1 = ({ currentPage }) => {
                     </a>
                   </Link>
                 </button>
-                {user?.employeeType === "Manager" && (
+                {user?.employeeType !== "Employee" && (
                   <>
                   {/* <button>
                     <Link to='/Mpage'>

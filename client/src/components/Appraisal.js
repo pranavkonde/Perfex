@@ -22,13 +22,12 @@ const AppraisalPage = () => {
   // Create appraisal PDF
   const doc = new jsPDF();
   const appraisalPercentage = Math.min(((approvedEmployee.managerRating - 1) / 4) * 20, 20);
-  const appraisalMessage = `Dear ${approvedEmployee.full_name},\n\nCongratulations! Your appraisal has been approved.\n\nYour Appraisal Percentage: ${appraisalPercentage.toFixed(2)}%\n\nBest regards,\n[Your Company Name]`;
+  const appraisalMessage = `Dear ${approvedEmployee.full_name},\n\nCongratulations! Your appraisal has been approved.\n\nYour Appraisal Percentage: ${appraisalPercentage.toFixed(2)}%\n\nBest regards,\n Parkar Digital`;
   doc.text(appraisalMessage, 10, 10);
   doc.save(`${approvedEmployee.full_name}_Appraisal.pdf`);
 };
  
- 
- 
+
  useEffect(() => {
     const fetchAppraisal = async () => {
       try {
@@ -38,19 +37,31 @@ const AppraisalPage = () => {
         );
         if (!tokenResponse?.data) throw new Error("Network response was not ok");
  
-        const employeeResponse = await axios.get(
-          `http://localhost:5500/employee/${tokenResponse?.data?.employeeId}`
-        );
-        if (!employeeResponse?.data) throw new Error("Network response was not ok");
- 
-        setEmployees([employeeResponse.data]);
+     
  
         const appraisalResponse = await axios.get(
-          `http://localhost:5500/GetAllAppraisalActionList`
+          `http://localhost:5500/myGoals/getGoalForAppraisal`
         );
         if (!appraisalResponse?.data) throw new Error("Network response was not ok");
- 
- 
+        console.log("asasdsasdsdsd",appraisalResponse.data)
+        // setEmployees(appraisalResponse.data);
+
+
+        // const employeeResponse = await axios.get(
+        //   `http://localhost:5500/employee/${appraisalResponse?.data?.userId}`
+        // );
+        // if (!employeeResponse?.data) throw new Error("Network response was not ok"); 
+
+        // console.log("name",employeeResponse.data.full_name)
+
+        const newEmployees = await Promise.all(appraisalResponse?.data?.map(async (detail) => {
+          const response = await axios.get(`http://localhost:5500/employee/${detail?.userId}`, {withCredentials: true});
+          if (!response?.data) throw new Error('Network response was not ok');
+          detail.full_name = response?.data?.full_name;
+          detail.role = response?.data?.role;
+          return detail;
+        }));
+        setEmployees(newEmployees)
       } catch (error) {
         console.error("Error fetching Appraisal:", error);
       } finally {
@@ -74,7 +85,7 @@ const AppraisalPage = () => {
           <thead>
             <tr>
               <th>Employee Name</th>
-              <th>Designation</th>
+              <th>Role</th>
               <th>Manager Name</th>
               <th>Manager Rating</th>
               <th>Appraisal Percentage</th>
@@ -88,7 +99,7 @@ const AppraisalPage = () => {
               return (
                 <tr key={employee._id}>
                  <td>{employee.full_name}</td>
-                 <td>{employee.department}</td>
+                 <td>{employee.role}</td>
                  <td>{employee.managerName}</td>
                  <td>{employee.managerRating}</td>
                  <td>{appraisalPercentage.toFixed(2)}%</td>

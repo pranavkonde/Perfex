@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./CreateGoalHR.css";
 import axios from "axios";
+import Navbar1 from "./Navbar1";
+
 
 const CreateGoalHR = () => {
   const [employeeType, setEmployeeType] = useState("");
@@ -34,7 +36,8 @@ const CreateGoalHR = () => {
 
   return (
     <div>
-      <form className='goal-form' onSubmit={handleSubmit}>
+            <Navbar1 currentPage="CreateGoalHR" />
+            <h1 className='page-title'>Create Your Goals</h1>      <form className='goal-form' onSubmit={handleSubmit}>
         <div className='form-group'>
           <label htmlFor='employeeType'>Employee Type:</label>
           <select

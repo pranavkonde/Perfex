@@ -60,25 +60,45 @@ const Navbar1 = ({ currentPage }) => {
                 </button>
                 {user?.employeeType !== "Employee" && (
                   <>
-                  {/* <button>
-                    <Link to='/Mpage'>
-                      <a href='/Mpage' className='Mpage-link'>
-                        Manager
-                      </a>
-                    </Link>
-                  </button> */}
-                  <button>
-                  <Link to="/notification">
-                  <a className="notification-link">Requests</a>
-                  </Link>
-                  </button>
+                    <button>
+                      <Link to="/notification">
+                        <a className="notification-link">Requests</a>
+                      </Link>
+                    </button>
                   </>
                 )}
-                <button onClick={handleLogout} style={{ textDecoration: 'underline' }}>Logout</button>
-
+                {user?.employeeType === "HR" &&(
+                  <>
+                    <button>
+                      <Link to="/CreateGoalHR">
+                        <a className="CreateGoalHR-link">Create Goals</a>
+                      </Link>
+                    </button>
+                  </>
+                )}
+                {user?.employeeType === "HR" && (
+                  <>
+                    <button>
+                      <Link to="/Appraisal">
+                        <a className="Appraisal-link">Appraisal</a>
+                      </Link>
+                    </button>
+                  </>
+                )}
+                
               </div>
             ) : (
               <></>
+            )}
+            {/* Check if current page is the profile page */}
+            {currentPage === "profile" && (
+              <div
+                className='navbar-item profile'
+                style={{ borderRadius: "8px", padding: "20px" }}
+              >
+                {/* Add the logout button under the profile link */}
+                <button onClick={handleLogout} style={{ textDecoration: 'underline' }}>Logout</button>
+              </div>
             )}
           </>
         )}

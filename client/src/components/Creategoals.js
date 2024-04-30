@@ -172,10 +172,7 @@ const GoalsTable = () => {
                 </Alert>
               )}
       </div>
-      <h1 className='page-title'>Create Your Goals</h1>
-      {user?.employeeType === "HR" ? (
-        <CreateGoalHR />
-      ) : (
+      
         <>
           <div>
             {showDropdown && (
@@ -281,7 +278,7 @@ const GoalsTable = () => {
             Submit Modified Goals
           </button>
         </>
-      )}
+      
     </div>
   );
 };
